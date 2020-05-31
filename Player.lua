@@ -10,6 +10,8 @@ Player = {
 	speed = 200,
 	name = "Player 1",
 	level = 1,
+	hitSplashes = {},
+	damageToTake = {}
 }
 
 function Player:new()
@@ -17,7 +19,7 @@ function Player:new()
 	return self
 end
 
-function Player:move(dt)
+function Player:_move(dt)
 
 	local vertical = 0
 	local horizontal = 0
@@ -31,16 +33,50 @@ function Player:move(dt)
 	self.x = self.x + horizontal * self.speed * dt
 end
 
-function Player:runEffects()
-	if love.keyboard.isDown('q') then vertical = -1 end
+function Player:insertDamage(value)
+	if self.health > 0 then
+		table.insert(self.damageToTake, value)
+	end
+end
+
+function Player:_computeDamage()
+	for key, damage in pairs(self.damageToTake) do
+		self.health = self.health - damage
+		table.insert(self.hitSplashes, HitSplash:new(damage, self.x, self.y))
+		table.remove(self.damageToTake, key)
+		if self.health < 0 then
+			self.health = 0
+		end
+	end
+end
+
+function Player:_updateHitSplashes(dt)
+	for key, hitsplash in pairs(self.hitSplashes) do
+		hitsplash:update(dt)
+		if (hitsplash.duration <= 0) then
+			table.remove(self.hitSplashes, key)
+		end
+	end
+end
+
+function Player:_renderHitSplashes()
+	for key, hitsplash in pairs(self.hitSplashes) do
+		hitsplash:draw()
+	end
+end
+
+function Player:update(dt)
+	self:_move(dt)
+	self:_updateHitSplashes(dt)
+	self:_computeDamage()
 end
 
 function Player:render()
 	love.graphics.setColor(0, 0, 1);
 	love.graphics.circle("fill", self.x, self.y, self.radius)
 	love.graphics.setColor(0, 1, 0);
-
 	self:_renderHealthBar()
+	self:_renderHitSplashes()
 end
 
 function Player:_renderHealthBar()

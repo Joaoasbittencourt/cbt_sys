@@ -1,14 +1,15 @@
 require("Player")
 
 function love.load()
-	p = Player:new()
+	love.graphics.setBackgroundColor(0.8, 0.8, 0.8)
+	PLAYER = Player:new()
 end
 
 function love.update(dt)
-	p:move(dt)
+	PLAYER:move(dt)
 end
 
 function love.draw()
-	p:render()
+	PLAYER:render()
 end
 

@@ -9,8 +9,8 @@
 ## Features
 
 - [x] Add Player
+- [x] Add Damage Animation
 - [] Add Attack and animation
-- [] Add Damage Animation
 - [] Combat rules (cooldown and etc)
 - [] Buff and Debuffs
 - [] Character classes

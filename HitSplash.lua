@@ -1,8 +1,5 @@
 HitSplash = {
-	duration = 2000,
 	value = 0,
-	x = 0,
-	y = 0,
 	color = {
 		r = 0,
 		g = 0,
@@ -16,6 +13,7 @@ function HitSplash:new(value, x, y)
 	self.x = x
 	self.y = y
 	self.value = value
+	self.duration = 2000
 
 	return self
 end

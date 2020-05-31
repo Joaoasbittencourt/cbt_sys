@@ -19,7 +19,15 @@ function Player:new()
 	return self
 end
 
+function Player:isDead()
+	return self.health <= 0
+end
+
 function Player:_move(dt)
+
+	if self:isDead() then
+		return
+	end
 
 	local vertical = 0
 	local horizontal = 0

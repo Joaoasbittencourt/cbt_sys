@@ -20,10 +20,10 @@ function love.keypressed(key, scancode, isrepeat)
 	end
 
 	if key == 'q' then
-		PLAYER:insertDamage(10)
+
+		PLAYER:insertDamage(10 + math.floor(math.random() * 20))
 	end
 
 	if key == 'h' then
-
 	end
 end

@@ -12,10 +12,6 @@ end
 
 function love.draw()
 	PLAYER:render()
-
-	for key, hit in pairs(PLAYER.hitSplashes) do
-		love.graphics.print(math.floor(hit.duration), 10, 10 + 10 * key)
-	end
 end
 
 function love.keypressed(key, scancode, isrepeat)

@@ -52,12 +52,8 @@ function Player:_computeDamage()
 	for key, damage in pairs(self.damageToTake) do
 		self.health = self.health - damage
 		table.remove(self.damageToTake, key)
-		table.insert(self.hitSplashes, {
-			x = self.x,
-			y = self.y,
-			duration = 800,
-			value = damage
-		})
+
+		table.insert(self.hitSplashes, createHitSplash(damage, self.x, self.y))
 		if self.health < 0 then
 			self.health = 0
 		end
@@ -66,15 +62,8 @@ end
 
 function Player:_updateHitSplashes(dt)
 	for key, hitsplash in pairs(self.hitSplashes) do
-		local hitsplashSpeed = 20
-		if hitsplash.duration > 0 then
-			hitsplash.duration = hitsplash.duration - dt * 1000
-			hitsplash.y = hitsplash.y - dt * hitsplashSpeed
-		else
-			hitsplash.duration = 0
-		end
-
-		if (hitsplash.duration <= 0) then
+		hitsplash.update(dt)
+		if (hitsplash.getDuration() <= 0) then
 			table.remove(self.hitSplashes, key)
 		end
 	end
@@ -82,8 +71,7 @@ end
 
 function Player:_renderHitSplashes()
 	for key, hitsplash in pairs(self.hitSplashes) do
-		love.graphics.setColor(1, 0, 0)
-		love.graphics.print(hitsplash.value, hitsplash.x, hitsplash.y)
+		hitsplash.draw()
 	end
 end
 

@@ -3,15 +3,15 @@ require("Player")
 
 function love.load()
 	love.graphics.setBackgroundColor(0.8, 0.8, 0.8)
-	PLAYER = Player:new()
+	player = createPlayer()
 end
 
 function love.update(dt)
-	PLAYER:update(dt)
+	player.update(dt)
 end
 
 function love.draw()
-	PLAYER:render()
+	player.render()
 end
 
 function love.keypressed(key, scancode, isrepeat)
@@ -20,8 +20,7 @@ function love.keypressed(key, scancode, isrepeat)
 	end
 
 	if key == 'q' then
-
-		PLAYER:insertDamage(4 + math.floor(math.random() * 5))
+		player.insertDamage(4 + math.floor(math.random() * 5))
 	end
 
 	if key == 'h' then

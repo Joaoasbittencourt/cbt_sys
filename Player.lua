@@ -1,121 +1,120 @@
-Player = {
-	id = 1,
-	radius = 30,
-	x = 100,
-	y = 100,
-	health = 100,
-	maxHealth = 100,
-	mana = 100,
-	maxMana = 100,
-	speed = 200,
-	name = "Player 1",
-	level = 1,
-	hitSplashes = {},
-	damageToTake = {}
-}
 
-function Player:new()
-	setmetatable({}, Player)
-	return self
-end
 
-function Player:isDead()
-	return self.health <= 0
-end
+function createPlayer()
 
-function Player:_move(dt)
+	local _id = 1
+	local _name = "João Pedro"
+	local _health = 100
+	local _maxHealth = 100
+	local _radius = 30
+	local _x = 100
+	local _y = 100
+	local _speed = 200
+	local _hitSplashes = {}
+	local _damageToTake = {}
 
-	if self:isDead() then
-		return
+	local _isDead = function()
+		return _health <= 0
 	end
 
-	local vertical = 0
-	local horizontal = 0
+	local _move = function(dt)
+		if _isDead() then
+			return
+		end
 
-	if love.keyboard.isDown('w') then vertical = -1 end
-	if love.keyboard.isDown('s') then vertical = vertical + 1 end
-	if love.keyboard.isDown('d') then horizontal = 1 end
-	if love.keyboard.isDown('a') then horizontal = horizontal - 1 end
+		local vertical = 0
+		local horizontal = 0
 
-	self.y = self.y + vertical * self.speed * dt
-	self.x = self.x + horizontal * self.speed * dt
-end
+		if love.keyboard.isDown('w') then vertical = -1 end
+		if love.keyboard.isDown('s') then vertical = vertical + 1 end
+		if love.keyboard.isDown('d') then horizontal = 1 end
+		if love.keyboard.isDown('a') then horizontal = horizontal - 1 end
 
-function Player:insertDamage(value)
-	if self.health > 0 then
-		table.insert(self.damageToTake, value)
+		_y = _y + vertical * _speed * dt
+		_x = _x + horizontal * _speed * dt
 	end
-end
 
-function Player:_computeDamage()
-
-	for key, damage in pairs(self.damageToTake) do
-		self.health = self.health - damage
-		table.remove(self.damageToTake, key)
-
-		table.insert(self.hitSplashes, createHitSplash(damage, self.x, self.y))
-		if self.health < 0 then
-			self.health = 0
+	local _insertDamage = function(value)
+		if _health > 0 then
+			table.insert(_damageToTake, value)
 		end
 	end
-end
 
-function Player:_updateHitSplashes(dt)
-	for key, hitsplash in pairs(self.hitSplashes) do
-		hitsplash.update(dt)
-		if (hitsplash.getDuration() <= 0) then
-			table.remove(self.hitSplashes, key)
+	local _computeDamage = function()
+		for key, damage in pairs(_damageToTake) do
+
+			_health = _health - damage
+			table.remove(_damageToTake, key)
+			table.insert(_hitSplashes, createHitSplash(damage, _x, _y))
+
+			if _health < 0 then
+				_health = 0
+			end
 		end
 	end
-end
 
-function Player:_renderHitSplashes()
-	for key, hitsplash in pairs(self.hitSplashes) do
-		hitsplash.draw()
+	local _updateHitSplashes = function(dt)
+		for key, hitsplash in pairs(_hitSplashes) do
+			hitsplash.update(dt)
+			if (hitsplash.getDuration() <= 0) then
+				table.remove(_hitSplashes, key)
+			end
+		end
 	end
-end
 
-function Player:update(dt)
-	self:_move(dt)
-	self:_updateHitSplashes(dt)
-	self:_computeDamage()
-end
+	local _renderHitSplashes = function()
+		for key, hitsplash in pairs(_hitSplashes) do
+			hitsplash.draw()
+		end
+	end
 
-function Player:render()
-	love.graphics.setColor(0, 0, 1);
-	love.graphics.circle("fill", self.x, self.y, self.radius)
-	love.graphics.setColor(0, 1, 0);
-	self:_renderHealthBar()
-	self:_renderHitSplashes()
-end
+	local _renderHealthBar = function ()
 
-function Player:_renderHealthBar()
+		local width = 65;
+		local height = 8;
+		local distanceFromPlayer = 15;
+		local percentage = _health / _maxHealth;
+		local nameFromBar = 20
 
-	local width = 65;
-	local height = 8;
-	local distanceFromPlayer = 15;
-	local percentage = self.health / self.maxHealth;
-	local nameFromBar = 20
+		local healthBarFrameWidth = 2
+		local frameOffset = healthBarFrameWidth / 2
+		local xOffset = _x - width / 2
+		local yOffset = _y - _radius - distanceFromPlayer - height
 
-	local healthBarFrameWidth = 2
-	local frameOffset = healthBarFrameWidth / 2
-	local xOffset = self.x - width / 2
-	local yOffset = self.y - self.radius - distanceFromPlayer - height
+		love.graphics.setColor(0, 0, 0);
+		love.graphics.setLineWidth(healthBarFrameWidth)
+		love.graphics.rectangle(
+			"line",
+			xOffset - frameOffset,
+			yOffset - frameOffset,
+			width + healthBarFrameWidth,
+			height + healthBarFrameWidth
+		)
 
+		love.graphics.setColor(1 - percentage, percentage, 0)
+		love.graphics.rectangle("fill", xOffset, yOffset, width * percentage, height)
+		love.graphics.setColor(0, 0, 0)
+		love.graphics.printf(_name, xOffset, yOffset - nameFromBar, width, "center")
 
-	love.graphics.setColor(0, 0, 0);
-	love.graphics.setLineWidth(healthBarFrameWidth)
-	love.graphics.rectangle(
-		"line",
-		xOffset - frameOffset,
-		yOffset - frameOffset,
-		width + healthBarFrameWidth,
-		height + healthBarFrameWidth
-	)
+	end
 
-	love.graphics.setColor(1 - percentage, percentage, 0)
-	love.graphics.rectangle("fill", xOffset, yOffset, width * percentage, height)
-	love.graphics.setColor(0, 0, 0)
-	love.graphics.printf(self.name, xOffset, yOffset - nameFromBar, width, "center")
+	local _update = function(dt)
+		_move(dt)
+		_updateHitSplashes(dt)
+		_computeDamage()
+	end
 
+	local _render = function()
+		love.graphics.setColor(0, 0, 1);
+		love.graphics.circle("fill", _x, _y, _radius)
+		love.graphics.setColor(0, 1, 0);
+		_renderHealthBar()
+		_renderHitSplashes()
+	end
+
+	return {
+		insertDamage = _insertDamage,
+		update = _update,
+		render = _render,
+	}
 end

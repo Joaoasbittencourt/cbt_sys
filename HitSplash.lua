@@ -1,11 +1,10 @@
 
-
 function createHitSplash(value, x, y)
 
 	local _x = x
 	local _y = y
-	local _value = value
 	local _duration = 800
+	local _speed = 200
 
 	return {
 
@@ -14,10 +13,10 @@ function createHitSplash(value, x, y)
 		end,
 
 		update = function(dt)
-			local speed = 15
+			_speed = _speed * 0.95
 			if _duration > 0 then
 				_duration = _duration - dt * 1000
-				_y = _y - dt * speed
+				_y = _y - dt * _speed
 			else
 				_duration = 0
 			end

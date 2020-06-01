@@ -67,33 +67,7 @@ function Player()
 	end
 
 	local _renderHealthBar = function()
-
-		local width = 65;
-		local height = 8;
-		local distanceFromPlayer = 15;
-		local percentage = _health / _maxHealth;
-		local nameFromBar = 20
-
-		local healthBarFrameWidth = 2
-		local frameOffset = healthBarFrameWidth / 2
-		local xOffset = _x - width / 2
-		local yOffset = _y - _radius - distanceFromPlayer - height
-
-		love.graphics.setColor(0, 0, 0);
-		love.graphics.setLineWidth(healthBarFrameWidth)
-		love.graphics.rectangle(
-			"line",
-			xOffset - frameOffset,
-			yOffset - frameOffset,
-			width + healthBarFrameWidth,
-			height + healthBarFrameWidth
-		)
-
-		love.graphics.setColor(1 - percentage, percentage, 0)
-		love.graphics.rectangle("fill", xOffset, yOffset, width * percentage, height)
-		love.graphics.setColor(0, 0, 0)
-		love.graphics.printf(_name, xOffset, yOffset - nameFromBar, width, "center")
-
+		renderHealthBar(_health / _maxHealth, _x, _y - _radius, _name)
 	end
 
 	local _update = function(dt)
@@ -110,9 +84,16 @@ function Player()
 		_renderHitSplashes()
 	end
 
+	local _heal = function (value)
+		if _maxHealth >= _health + value then
+			_health = _health + value
+		end
+	end
+
 	return {
 		insertDamage = _insertDamage,
 		update = _update,
 		render = _render,
+		heal = _heal
 	}
 end

@@ -1,5 +1,6 @@
 require("src/HitSplash")
 require("src/Player")
+require("src/HealthBar")
 
 function love.load()
 	love.graphics.setBackgroundColor(0.8, 0.8, 0.8)
@@ -24,5 +25,6 @@ function love.keypressed(key, scancode, isrepeat)
 	end
 
 	if key == 'h' then
+		player.heal(10)
 	end
 end

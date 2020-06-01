@@ -1,5 +1,5 @@
-require("Player")
 require("HitSplash")
+require("Player")
 
 function love.load()
 	love.graphics.setBackgroundColor(0.8, 0.8, 0.8)
@@ -12,6 +12,10 @@ end
 
 function love.draw()
 	PLAYER:render()
+
+	for key, hit in pairs(PLAYER.hitSplashes) do
+		love.graphics.print(math.floor(hit.duration), 10, 10 + 10 * key)
+	end
 end
 
 function love.keypressed(key, scancode, isrepeat)
@@ -21,7 +25,7 @@ function love.keypressed(key, scancode, isrepeat)
 
 	if key == 'q' then
 
-		PLAYER:insertDamage(10 + math.floor(math.random() * 20))
+		PLAYER:insertDamage(4 + math.floor(math.random() * 5))
 	end
 
 	if key == 'h' then

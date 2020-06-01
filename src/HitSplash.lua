@@ -1,5 +1,4 @@
-
-function createHitSplash(value, x, y)
+function HitSplash(value, x, y)
 
 	local _x = x
 	local _y = y

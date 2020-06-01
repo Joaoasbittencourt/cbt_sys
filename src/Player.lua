@@ -1,6 +1,4 @@
-
-
-function createPlayer()
+function Player()
 
 	local _id = 1
 	local _name = "João Pedro"
@@ -45,7 +43,7 @@ function createPlayer()
 
 			_health = _health - damage
 			table.remove(_damageToTake, key)
-			table.insert(_hitSplashes, createHitSplash(damage, _x, _y))
+			table.insert(_hitSplashes, HitSplash(damage, _x, _y))
 
 			if _health < 0 then
 				_health = 0
@@ -68,7 +66,7 @@ function createPlayer()
 		end
 	end
 
-	local _renderHealthBar = function ()
+	local _renderHealthBar = function()
 
 		local width = 65;
 		local height = 8;

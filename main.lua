@@ -1,9 +1,9 @@
-require("HitSplash")
-require("Player")
+require("src/HitSplash")
+require("src/Player")
 
 function love.load()
 	love.graphics.setBackgroundColor(0.8, 0.8, 0.8)
-	player = createPlayer()
+	player = Player()
 end
 
 function love.update(dt)

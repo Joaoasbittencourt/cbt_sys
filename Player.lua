@@ -55,7 +55,7 @@ function Player:_computeDamage()
 		table.insert(self.hitSplashes, {
 			x = self.x,
 			y = self.y,
-			duration = 2000,
+			duration = 800,
 			value = damage
 		})
 		if self.health < 0 then

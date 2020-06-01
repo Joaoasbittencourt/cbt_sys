@@ -22,7 +22,11 @@ function HitSplash(value, x, y)
 		end,
 
 		draw = function()
-			love.graphics.setColor(1, 0, 0)
+			if value < 0 then
+				love.graphics.setColor(1, 0, 0)
+			else
+				love.graphics.setColor(0, 1, 0)
+			end
 			love.graphics.print(value, _x, _y)
 		end
 	}

@@ -43,7 +43,7 @@ function Player()
 
 			_health = _health - damage
 			table.remove(_damageToTake, key)
-			table.insert(_hitSplashes, HitSplash(damage, _x, _y))
+			table.insert(_hitSplashes, HitSplash(-damage, _x, _y))
 
 			if _health < 0 then
 				_health = 0
@@ -87,6 +87,7 @@ function Player()
 	local _heal = function (value)
 		if _maxHealth >= _health + value then
 			_health = _health + value
+			table.insert(_hitSplashes, HitSplash(value, _x, _y))
 		end
 	end
 

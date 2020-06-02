@@ -95,6 +95,9 @@ function Player()
 		insertDamage = _insertDamage,
 		update = _update,
 		render = _render,
-		heal = _heal
+		heal = _heal,
+		getRadius = function() return _radius end,
+		getX = function() return _x end,
+		getY = function() return _y end,
 	}
 end

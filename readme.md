@@ -16,10 +16,11 @@
 
 - [x] Add Player
 - [x] Add Damage Animation
-- [-] Add Attack and animation
-- [-] Combat rules (cooldown and etc)
-- [-] Buff and Debuffs
-- [-] Character classes
-- [-] Items and Equipments
-- [-] networking support
-- [-] Mobile Controls
+- [ ] Add Attack and animation
+- [ ] Combat rules (cooldown and etc)
+- [ ] Separe code in entities and components
+- [ ] Buff and Debuffs
+- [ ] Character classes
+- [ ] Items and Equipments
+- [ ] networking support
+- [ ] Mobile Controls

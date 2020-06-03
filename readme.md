@@ -16,10 +16,11 @@
 
 - [x] Add Player
 - [x] Add Damage Animation
-- [ ] Add Attack Target
+- [x] Add Attack Target
 - [ ] Add Attack Functionality
 - [ ] Add enemy
 - [ ] Add Attack Animation
+- [ ] HealthManagerComponent
 - [ ] Create A single entity table (is this optimal?)
 - [ ] Combat rules (cooldown and etc)
 - [ ] Separe code in entities and components

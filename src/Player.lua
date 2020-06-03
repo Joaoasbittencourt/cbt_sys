@@ -11,6 +11,8 @@ function Player()
 	local _hitSplashes = {}
 	local _damageToTake = {}
 
+	local target = MeleeTarget()
+
 	local _isDead = function()
 		return _health <= 0
 	end
@@ -74,6 +76,7 @@ function Player()
 		_move(dt)
 		_updateHitSplashes(dt)
 		_computeDamage()
+		target.update(_x, _y, _radius)
 	end
 
 	local _render = function()
@@ -82,6 +85,7 @@ function Player()
 		love.graphics.setColor(0, 1, 0);
 		_renderHealthBar()
 		_renderHitSplashes()
+		target.draw()
 	end
 
 	local _heal = function (value)

@@ -4,7 +4,7 @@ function MeleeTarget()
 	local y = 0
 	local radius = 30
 
-	function update(originX, originY, distance)
+	local function update(originX, originY, distance)
 		local mx, my = love.mouse.getPosition()
 		local angle = math.atan2(mx - originX, my - originY)
 		local dy = math.cos(angle) * (distance + radius)
@@ -13,7 +13,7 @@ function MeleeTarget()
 		y = originY + dy
 	end
 
-	function draw()
+	local function draw()
 		love.graphics.circle("line", x, y, radius)
 	end
 

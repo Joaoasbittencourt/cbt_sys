@@ -4,9 +4,9 @@
 
 - Download lua at <https://www.lua.org/download.html>
 - Download Love2D at <https://love2d.org/>
-- run love passing the project folder
+- run love with the project folder
 
-### On macos after installing love and lua from brew
+### On macos after installing love and lua from home-brew
 
 ``` bash
     love project_folder

@@ -8,7 +8,7 @@ function Player()
 	local health = Health(_radius)
 	local target = MeleeTarget()
 
-	function _move(dt)
+	local function _move(dt)
 		if health.isDead() then
 			return
 		end
@@ -25,7 +25,7 @@ function Player()
 		_x = _x + horizontal * _speed * dt
 	end
 
-	function _update(dt)
+	local function _update(dt)
 		_move(dt)
 		health.update(dt, _x, _y)
 		target.update(_x, _y, _radius)

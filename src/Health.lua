@@ -7,7 +7,7 @@ function Health(verticalOffset)
 	local _x = 0
 	local _y = 0
 
-	local _computeDamage = function()
+	local function _computeDamage()
 		for key, damage in pairs(_damageToTake) do
 
 			_health = _health - damage
@@ -20,7 +20,7 @@ function Health(verticalOffset)
 		end
 	end
 
-	local _updateHitSplashes = function(dt)
+	local function _updateHitSplashes(dt)
 		for key, hitsplash in pairs(_hitSplashes) do
 			hitsplash.update(dt)
 			if (hitsplash.getDuration() <= 0) then
@@ -29,27 +29,27 @@ function Health(verticalOffset)
 		end
 	end
 
-	local _renderHitSplashes = function()
+	local function _renderHitSplashes()
 		for key, hitsplash in pairs(_hitSplashes) do
 			hitsplash.draw()
 		end
 	end
 
 
-	local _heal = function (value)
+	local function _heal(value)
 		if _maxHealth >= _health + value then
 			_health = _health + value
 			table.insert(_hitSplashes, HitSplash(value, _x, _y))
 		end
 	end
 
-	local _insertDamage = function(value)
+	local function _insertDamage(value)
 		if _health > 0 then
 			table.insert(_damageToTake, value)
 		end
 	end
 
-	local _isDead = function()
+	local function _isDead()
 		return _health <= 0
 	end
 

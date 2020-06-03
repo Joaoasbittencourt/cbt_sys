@@ -1,4 +1,4 @@
-function renderHealthBar(percentage, x, y, name)
+function renderHealthBar(percentage, x, y)
 
 	local width = 65;
 	local height = 8;
@@ -22,6 +22,4 @@ function renderHealthBar(percentage, x, y, name)
 	love.graphics.setColor(1 - percentage, percentage, 0)
 	love.graphics.rectangle("fill", xOffset, yOffset, width * percentage, height)
 	love.graphics.setColor(0, 0, 0)
-	love.graphics.printf(name or "", xOffset, yOffset - nameFromBar, width, "center")
-
 end

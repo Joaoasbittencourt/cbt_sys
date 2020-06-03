@@ -2,6 +2,7 @@ require("src/HealthBar")
 require("src/HitSplash")
 require("src/DamageArea")
 require("src/MeleeTarget")
+require("src/Health")
 require("src/Player")
 
 function love.load()
@@ -23,11 +24,11 @@ function love.keypressed(key, scancode, isrepeat)
 	end
 
 	if key == 'q' then
-		player.insertDamage(4 + math.floor(math.random() * 5))
+		player.health.insertDamage(4 + math.floor(math.random() * 5))
 	end
 
 	if key == 'h' then
-		player.heal(10)
+		player.health.heal(10)
 	end
 end
 

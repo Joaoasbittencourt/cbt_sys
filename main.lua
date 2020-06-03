@@ -15,7 +15,7 @@ function love.update(dt)
 end
 
 function love.draw()
-	player.render()
+	player.draw()
 end
 
 function love.keypressed(key, scancode, isrepeat)

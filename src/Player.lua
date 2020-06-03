@@ -8,7 +8,7 @@ function Player()
 	local health = Health(_radius)
 	local target = MeleeTarget()
 
-	local _move = function(dt)
+	function _move(dt)
 		if health.isDead() then
 			return
 		end
@@ -25,13 +25,13 @@ function Player()
 		_x = _x + horizontal * _speed * dt
 	end
 
-	local _update = function(dt)
+	function _update(dt)
 		_move(dt)
 		health.update(dt, _x, _y)
 		target.update(_x, _y, _radius)
 	end
 
-	local _render = function()
+	local function _draw()
 		love.graphics.setColor(0, 0, 1);
 		love.graphics.circle("fill", _x, _y, _radius)
 		love.graphics.setColor(0, 1, 0);
@@ -42,7 +42,7 @@ function Player()
 	return {
 		health = health,
 		update = _update,
-		render = _render,
+		draw = _draw,
 		getRadius = function() return _radius end,
 		getX = function() return _x end,
 		getY = function() return _y end,

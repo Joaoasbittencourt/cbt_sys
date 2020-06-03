@@ -3,6 +3,7 @@ require("src/HitSplash")
 require("src/DamageArea")
 require("src/MeleeTarget")
 require("src/Health")
+require("src/Controller")
 require("src/Player")
 
 function love.load()

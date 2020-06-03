@@ -35,7 +35,6 @@ function Health(verticalOffset)
 		end
 	end
 
-
 	local function _heal(value)
 		if _maxHealth >= _health + value then
 			_health = _health + value
@@ -53,14 +52,14 @@ function Health(verticalOffset)
 		return _health <= 0
 	end
 
-	function update(dt, x, y)
+	local function update(dt, x, y)
 		_x = x
 		_y = y
 		_updateHitSplashes(dt)
 		_computeDamage()
 	end
 
-	function draw()
+	local function draw()
 		renderHealthBar(_health / _maxHealth, _x, _y - verticalOffset)
 		_renderHitSplashes()
 	end

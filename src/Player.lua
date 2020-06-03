@@ -4,7 +4,6 @@ function Player()
 	local _y = 100
 	local _radius = 30
 	local _speed = 200
-
 	local health = Health(_radius)
 	local target = MeleeTarget()
 
@@ -13,16 +12,9 @@ function Player()
 			return
 		end
 
-		local vertical = 0
-		local horizontal = 0
-
-		if love.keyboard.isDown('w') then vertical = -1 end
-		if love.keyboard.isDown('s') then vertical = vertical + 1 end
-		if love.keyboard.isDown('d') then horizontal = 1 end
-		if love.keyboard.isDown('a') then horizontal = horizontal - 1 end
-
-		_y = _y + vertical * _speed * dt
-		_x = _x + horizontal * _speed * dt
+		local displacement = Controller.getDisplacement(dt, _speed)
+		_y = _y + displacement.dy
+		_x = _x + displacement.dx
 	end
 
 	local function _update(dt)

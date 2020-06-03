@@ -7,27 +7,33 @@ function love.load()
 	love.graphics.setBackgroundColor(0.8, 0.8, 0.8)
 	player = Player()
 
-	damageAreas = {}
+	attackTarget = {
+		x = 0,
+		y = 0,
+		radius = 30,
+		update = function(self)
+			local distance = player.getRadius() + attackTarget.radius
+			local mx, my = love.mouse.getPosition()
+			local angle = math.atan2(mx - player.getX(), my - player.getY())
+			local dy = math.cos(angle) * distance
+			local dx = math.sin(angle) * distance
+			self.x = player.getX() + dx
+			self.y = player.getY() + dy
+		end,
+		draw = function(self)
+			love.graphics.circle("line", self.x, self.y, self.radius)
+		end
+	}
 end
 
 function love.update(dt)
 	player.update(dt)
-
-	for k, v in pairs(damageAreas) do
-		if math.sqrt((player.getX() - v.getX()) ^ 2 + (player.getY() - v.getY()) ^ 2) < player.getRadius() + v.getRadius()  then
-			v.computeDamage(player)
-			table.remove(damageAreas, k)
-		end
-	end
-
+	attackTarget.update(attackTarget)
 end
 
 function love.draw()
 	player.render()
-
-	for k, v in pairs(damageAreas) do
-		v.draw()
-	end
+	attackTarget.draw(attackTarget)
 end
 
 function love.keypressed(key, scancode, isrepeat)
@@ -45,7 +51,4 @@ function love.keypressed(key, scancode, isrepeat)
 end
 
 function love.mousepressed (x, y, button, istouch)
-	if button == 1 then
-		table.insert(damageAreas, DamageArea(10, x, y, 100))
-	end
 end

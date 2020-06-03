@@ -1,8 +1,9 @@
 function renderHealthBar(percentage, x, y --[[,name]])
+	--local nameFromBar = 20
+
 	local width = 65;
 	local height = 8;
 	local offset = 15;
-	local nameFromBar = 20
 	local healthBarFrameWidth = 2
 	local frameOffset = healthBarFrameWidth / 2
 	local xOffset = x - width / 2

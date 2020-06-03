@@ -5,12 +5,12 @@ function DamageArea(value, x, y, size)
 	local _y = y or 0
 	local _value = value or 0
 
-	function draw()
+	local function draw()
 		love.graphics.setColor(1, 0, 1);
 		love.graphics.circle("fill", _x, _y, size)
 	end
 
-	function computeDamage(damageable)
+	local function computeDamage(damageable)
 		damageable.insertDamage(_value)
 	end
 

@@ -4,6 +4,7 @@ require("src/DamageArea")
 require("src/MeleeTarget")
 require("src/Health")
 require("src/Controller")
+require("src/Vector")
 require("src/Player")
 
 function love.load()

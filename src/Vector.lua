@@ -16,7 +16,6 @@ function Vector(x, y)
 		_y = point.getY()
 	end
 
-
 	self.div = div
 	self.add = add
 	self.mul = mul

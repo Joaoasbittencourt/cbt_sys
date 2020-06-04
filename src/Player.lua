@@ -1,5 +1,6 @@
 function Player()
 
+	local self = {}
 	local _radius = 30
 	local _speed = 200
 	local position = Vector(100, 100)
@@ -7,10 +8,8 @@ function Player()
 	local target = MeleeTarget()
 
 	local function _update(dt)
-
 		local x = position.getX()
 		local y = position.getY()
-
 		health.update(dt, x, y)
 		target.update(position, _radius)
 
@@ -26,12 +25,12 @@ function Player()
 		target.draw()
 	end
 
-	return {
-		health = health,
-		update = _update,
-		draw = _draw,
-		getRadius = function() return _radius end,
-		getX = position.getX,
-		getY = position.getY,
-	}
+
+	self.health = health
+	self.update = _update
+	self.draw = _draw
+	self.getX = position.getX
+	self.getY = position.getY
+	self.getRadius = function() return _radius end
+	return self
 end

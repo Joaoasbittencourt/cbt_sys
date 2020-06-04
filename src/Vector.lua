@@ -9,32 +9,33 @@ function Vector(x, y)
 	end
 
 	local function add(point)
-		_x = _x + point.getX()
-		_y = _y + point.getY()
-		return self
+		return Vector(_x + point.getX(),  _y + point.getY())
 	end
 
 	local function mul(value)
-		_x = _x * value
-		_y = _y * value
-		return self
+		return Vector(_x * value, _y * value)
+	end
+
+	local function sub(vec)
+		return Vector(_x - vec.getX(), _y - vec.getY())
 	end
 
 	local function set(point)
-		_x = point.x
-		_y = point.y
+		_x = point.getX()
+		_y = point.getY()
 	end
 
-	function getUnit()
+	local function getUnit()
 		local mod = getModulus()
-		return Vector(_x / mod, _y + mod)
+		return Vector(_x / mod, _y / mod)
 	end
 
 	self.add = add
 	self.mul = mul
+	self.set = set
+	self.sub = sub
 	self.getUnit = getUnit
 	self.getModulus = getModulus
-	self.set = set
 	self.getX = function() return _x end
 	self.getY = function() return _y end
 

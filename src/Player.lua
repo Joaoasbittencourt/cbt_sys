@@ -12,10 +12,10 @@ function Player()
 		local y = position.getY()
 
 		health.update(dt, x, y)
-		target.update(x, y, _radius)
+		target.update(position, _radius)
 
 		if health.isDead() then return end
-		position.add(Controller.getDxy().toVec().mul(_speed * dt))
+		position = position.add(Controller.getDxy().toVec().mul(_speed * dt))
 	end
 
 	local function _draw()

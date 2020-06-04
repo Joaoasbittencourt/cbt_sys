@@ -1,24 +1,24 @@
 function MeleeTarget()
 
-	local x = 0
-	local y = 0
+	local self = {}
+
+	local position = Vector(0, 0)
 	local radius = 30
 
-	local function update(originX, originY, distance)
+	local function update(originVec, distance)
 		local mx, my = love.mouse.getPosition()
-		local angle = math.atan2(mx - originX, my - originY)
-		local dy = math.cos(angle) * (distance + radius)
-		local dx = math.sin(angle) * (distance + radius)
-		x = originX + dx
-		y = originY + dy
+		position = Vector(mx, my)
+			.sub(originVec)
+			.getUnit()
+			.mul(distance + radius)
+			.add(originVec)
 	end
 
 	local function draw()
-		love.graphics.circle("line", x, y, radius)
+		love.graphics.circle("line", position.getX(), position.getY(), radius)
 	end
 
-	return {
-		draw = draw,
-		update = update
-	}
+	self.draw = draw
+	self.update = update
+	return self
 end

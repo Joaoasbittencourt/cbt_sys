@@ -1,6 +1,6 @@
 Controller = {}
 
- function Controller.getDxy()
+function Controller.getDxy()
 	local vertical = 0
 	local horizontal = 0
 	if love.keyboard.isDown('w') then vertical = -1 end

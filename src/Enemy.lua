@@ -6,8 +6,11 @@ function Enemy()
 	local position = Vector(200, 200)
 
 	local function update(dt, player)
-		if player.position.distanceTo(position) > player.radius + radius then
-			local dir = position.directionTo(player.position)
+
+		local playerPos = player.getPosition()
+
+		if playerPos.distanceTo(position) > player.radius + radius then
+			local dir = position.directionTo(playerPos)
 			position = position.add(dir.mul(speed * dt))
 		end
 

@@ -3,24 +3,22 @@ function Player()
 	local name = "João Pedro"
 	local radius = 30
 	local speed = 200
-	local position = Vector(300, 300)
 	local health = Health(radius, name)
 	local target = MeleeTarget()
+	local physics = PhysicsComponent(Vector(100, 100), radius)
 
 	local update = function(dt)
-		local x = position.getX()
-		local y = position.getY()
+		local position = physics.getPosition()
 
-		health.update(dt, x, y)
+		health.update(dt, position.getX(), position.getY())
 		target.update(position, radius)
 
 		if health.isDead() then return end
-
-		local displacement = Controller.getDxy().toVec().mul(speed * dt)
-		position.set(position.add(displacement))
+		physics.setSpeed(Controller.getDxy().toVec().mul(speed))
 	end
 
 	local draw = function()
+		local position = physics.getPosition()
 		love.graphics.setColor(0, 0, 1);
 		love.graphics.circle("fill", position.getX(), position.getY() , radius)
 		love.graphics.setColor(0, 1, 0);
@@ -29,9 +27,9 @@ function Player()
 	end
 
 	return {
+		getPosition = physics.getPosition,
 		update = update,
 		draw = draw,
-		position = position,
 		radius = radius,
 		health = health,
 		getTarget = function() return target end

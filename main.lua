@@ -7,19 +7,30 @@ require("src/Controller")
 require("src/Vector")
 require("src/Enemy")
 require("src/Player")
+require("src/Box")
+require("src/PhysicsComponent")
 
 wf = require("libs/windfield")
 
 
 function love.load()
+
+	world = wf.newWorld()
+
 	love.graphics.setBackgroundColor(0.8, 0.8, 0.8)
 	player = Player()
 	enemies = {}
+
+	local box1 = Box(Vector(100, 300))
+	local box2 = Box(Vector(300, 300))
 end
 
 function love.update(dt)
 
 	player.update(dt)
+	world:update(dt)
+
+
 
 	for key, enemy in pairs(enemies) do
 		enemy.update(dt, player)
@@ -31,6 +42,7 @@ function love.update(dt)
 end
 
 function love.draw()
+	world:draw()
 	player.draw()
 	for key, enemy in pairs(enemies) do
 		enemy.draw()

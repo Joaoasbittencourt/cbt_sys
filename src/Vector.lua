@@ -10,9 +10,7 @@ function Vector(x, y)
 	local function add(vec) return Vector(_x + vec.getX(),  _y + vec.getY()) end
 	local function sub(vec) return Vector(_x - vec.getX(), _y - vec.getY()) end
 	local function getUnit() return Vector(_x, _y).div(getModulus()) end
-	local function directionTo(point)
-		return point.sub(self).getUnit()
-	end
+	local function directionTo(point) return point.sub(self).getUnit() end
 	local function distanceTo(point) return self.sub(point).getModulus() end
 
 	local function set(point)

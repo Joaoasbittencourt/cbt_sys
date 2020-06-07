@@ -32,7 +32,8 @@ function Player()
 		draw = draw,
 		position = position,
 		radius = radius,
-		health = health
+		health = health,
+		getTarget = function() return target end
 	}
 
 end

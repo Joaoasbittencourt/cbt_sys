@@ -18,6 +18,8 @@
 - [x] Add Damage Animation
 - [x] Add Attack Target
 - [ ] Add Attack Functionality
+    - [x] damage an enemy
+	- [ ] set a cooldown for each attack
 - [ ] Add enemy
 - [ ] Add Attack Animation
 - [ ] HealthManagerComponent

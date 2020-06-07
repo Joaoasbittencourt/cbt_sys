@@ -21,6 +21,10 @@ function love.update(dt)
 
 	for key, enemy in pairs(enemies) do
 		enemy.update(dt, player)
+
+		if enemy.health.isDead() then
+			table.remove(enemies, key)
+		end
 	end
 end
 
@@ -48,3 +52,14 @@ function love.keypressed(key, scancode, isrepeat)
 		table.insert(enemies, Enemy())
 	end
 end
+
+function love.mousepressed(x, y, button, istouch)
+
+	local targetPos = player.getTarget().getPosition()
+
+	for key, enemy in pairs(enemies) do
+		if targetPos.distanceTo(enemy.getPosition()) < player.radius + enemy.getRadius()  then
+			enemy.health.insertDamage(4 + math.floor(math.random() * 5))
+		end
+	end
+ end

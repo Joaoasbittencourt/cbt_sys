@@ -20,5 +20,8 @@ function MeleeTarget()
 
 	self.draw = draw
 	self.update = update
+	self.getPosition = function ()
+		return position
+	end
 	return self
 end

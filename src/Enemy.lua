@@ -22,5 +22,8 @@ function Enemy()
 	self.update = update
 	self.draw = draw
 	self.health = health
+	self.getPosition = function() return position end
+	self.getRadius = function() return radius end
+
 	return self
 end

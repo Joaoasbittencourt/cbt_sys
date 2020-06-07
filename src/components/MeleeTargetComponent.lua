@@ -7,8 +7,10 @@ function MeleeTargetComponent()
 
 	local function update(originVec, distance)
 		local mx, my = love.mouse.getPosition()
+		local cameraX, cameraY = camera.getViewport()
+		local globalMousePos = Vector(mx + cameraX, my + cameraY)
 		position.set(
-			Vector(mx, my)
+			globalMousePos
 			.sub(originVec)
 			.getUnit()
 			.mul(distance + radius)

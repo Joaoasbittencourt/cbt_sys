@@ -1,8 +1,7 @@
 
 -- Libraries
 wf = require("libs/windfield")
-camera = require("libs/Camera")
-local worldWidth, worldHeight = 3000, 2000
+camera = require("src/utils/Camera")
 
 
 -- Utils
@@ -27,7 +26,7 @@ require("src/entities/BoxEntity")
 
 function love.load()
 
-	camera.setBoundary(0,0, worldWidth, worldHeight)
+	camera.setBoundary(0, 0, 2000, 3000)
 	world = wf.newWorld()
 
 	love.graphics.setBackgroundColor(0.8, 0.8, 0.8)

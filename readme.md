@@ -17,11 +17,12 @@
 - [x] Add Player
 - [x] Add Damage Animation
 - [x] Add Attack Target
-- [ ] Separate logic (Entities, components, systems and world)
+- [x] Separate logic (Entities, components, systems and world)
 - [x] Add Attack Functionality
 - [x] Implement a better collision system with lib
 - [x] Add enemy
 - [x] HealthManagerComponent
+- [x] Add Camera
 - [ ] Add Attack Animation
 - [ ] Create A single entity table (is this optimal?)
 - [ ] Combat rules (cooldown and etc)

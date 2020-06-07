@@ -13,6 +13,8 @@ function PlayerEntity()
 		health.update(dt, position.getX(), position.getY())
 		target.update(position, radius)
 
+		camera.lookAt(position.getX(), position.getY())
+
 		if health.isDead() then return end
 		physics.setSpeed(Controller.getDxy().toVec().mul(speed))
 	end

@@ -38,8 +38,10 @@ function HealthComponent(verticalOffset, name)
 	local function _heal(value)
 		if _maxHealth >= _health + value then
 			_health = _health + value
-			table.insert(_hitSplashes, HitSplashEntity:new(value, _x, _y))
+		else
+			_health = _maxHealth
 		end
+		table.insert(_hitSplashes, HitSplashEntity:new(value, _x, _y))
 	end
 
 	local function _insertDamage(value)

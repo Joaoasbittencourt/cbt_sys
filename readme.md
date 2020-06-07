@@ -23,12 +23,13 @@
 - [x] Add enemy
 - [x] HealthManagerComponent
 - [x] Add Camera
+- [ ] Add map with collidable tiles
 - [ ] Add Attack Animation
-- [ ] Create A single entity table (is this optimal?)
 - [ ] Combat rules (cooldown and etc)
-- [ ] Separe code in entities and components
 - [ ] Buff and Debuffs
 - [ ] Character classes
+- [ ] Loot system
+- [ ] Create a single entity table (is this optimal?)
 - [ ] Items and Equipments
 - [ ] networking support
 - [ ] Mobile Controls

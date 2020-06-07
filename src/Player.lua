@@ -15,11 +15,8 @@ function Player()
 
 		if health.isDead() then return end
 
-		position.set(
-			position.add(
-				Controller.getDxy().toVec().mul(speed * dt)
-			)
-		)
+		local displacement = Controller.getDxy().toVec().mul(speed * dt)
+		position.set(position.add(displacement))
 	end
 
 	local draw = function()

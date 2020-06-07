@@ -17,7 +17,9 @@
 - [x] Add Player
 - [x] Add Damage Animation
 - [x] Add Attack Target
+- [ ] Separate logic (Entities, components, systems and world)
 - [ ] Add Attack Functionality
+- [ ] Implement a better collision system with lib
     - [x] damage an enemy
 	- [ ] set a cooldown for each attack
 - [ ] Add enemy

@@ -8,11 +8,13 @@ require("src/Vector")
 require("src/Enemy")
 require("src/Player")
 
-enemies = {}
+wf = require("libs/windfield")
+
 
 function love.load()
 	love.graphics.setBackgroundColor(0.8, 0.8, 0.8)
 	player = Player()
+	enemies = {}
 end
 
 function love.update(dt)

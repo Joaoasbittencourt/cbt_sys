@@ -1,9 +1,10 @@
 function Player()
 
+	local name = "João Pedro"
 	local radius = 30
 	local speed = 200
 	local position = Vector(300, 300)
-	local health = Health(radius)
+	local health = Health(radius, name)
 	local target = MeleeTarget()
 
 	local update = function(dt)

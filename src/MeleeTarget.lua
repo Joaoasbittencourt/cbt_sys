@@ -7,11 +7,13 @@ function MeleeTarget()
 
 	local function update(originVec, distance)
 		local mx, my = love.mouse.getPosition()
-		position = Vector(mx, my)
+		position.set(
+			Vector(mx, my)
 			.sub(originVec)
 			.getUnit()
 			.mul(distance + radius)
 			.add(originVec)
+		)
 	end
 
 	local function draw()
@@ -20,8 +22,6 @@ function MeleeTarget()
 
 	self.draw = draw
 	self.update = update
-	self.getPosition = function ()
-		return position
-	end
+	self.getPosition = function () return position end
 	return self
 end

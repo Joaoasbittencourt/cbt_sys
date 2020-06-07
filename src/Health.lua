@@ -1,4 +1,4 @@
-function Health(verticalOffset)
+function Health(verticalOffset, name)
 
 	local _health = 100
 	local _maxHealth = 100
@@ -60,7 +60,7 @@ function Health(verticalOffset)
 	end
 
 	local function draw()
-		renderHealthBar(_health / _maxHealth, _x, _y - verticalOffset)
+		renderHealthBar(_health / _maxHealth, _x, _y - verticalOffset, name)
 		_renderHitSplashes()
 	end
 

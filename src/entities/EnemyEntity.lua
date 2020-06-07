@@ -13,7 +13,7 @@ function EnemyEntity()
 
 		if playerPos.distanceTo(position) < player.radius + radius + 5 then
 			if attackCooldown <= 0 then
-				player.health.insertDamage(10 + math.floor(math.random() * 10))
+				player.health.insertDamage(10 + math.floor(math.random() * 20))
 				attackCooldown = 2000
 			end
 		end
@@ -50,6 +50,7 @@ function EnemyEntity()
 	self.health = health
 	self.getPosition = function() return physics.getPosition() end
 	self.getRadius = function() return radius end
+	self.addImpact = physics.addImpact
 
 	return self
 end

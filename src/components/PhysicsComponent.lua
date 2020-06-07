@@ -24,6 +24,15 @@ function PhysicsComponent(initialPosition, radius, type)
 		return Vector(x, y)
 	end
 
+	self.addImpact = function(sourcePosition, magnitude)
+
+		local impulse = sourcePosition
+			.directionTo(self.getPosition())
+			.getUnit().mul(magnitude)
+
+		self.collider:applyLinearImpulse(impulse.getX(), impulse.getY())
+	end
+
 	self.destroy = function()
 		self.collider:destroy()
 	end

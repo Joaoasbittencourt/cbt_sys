@@ -88,8 +88,9 @@ function love.mousepressed(x, y, button, istouch)
 	local targetPos = player.getTarget().getPosition()
 
 	for key, enemy in pairs(enemies) do
-		if targetPos.distanceTo(enemy.getPosition()) < player.radius + enemy.getRadius()  then
+		if targetPos.distanceTo(enemy.getPosition()) < player.radius + enemy.getRadius() then
 			enemy.health.insertDamage(4 + math.floor(math.random() * 5))
+			enemy.addImpact(player.getPosition(), 3000)
 		end
 	end
  end

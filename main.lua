@@ -75,7 +75,7 @@ function love.keypressed(key, scancode, isrepeat)
 	end
 
 	if key == 'e' then
-		player.health.heal(10)
+		player.health.heal(2 +  math.floor(math.random() * 9))
 	end
 
 	if key == 'h' then

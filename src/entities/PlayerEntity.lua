@@ -1,10 +1,10 @@
-function Player()
+function PlayerEntity()
 
 	local name = "João Pedro"
 	local radius = 30
 	local speed = 200
-	local health = Health(radius, name)
-	local target = MeleeTarget()
+	local health = HealthComponent(radius, name)
+	local target = MeleeTargetComponent()
 	local physics = PhysicsComponent(Vector(100, 100), radius)
 
 	local update = function(dt)

@@ -1,16 +1,25 @@
-require("src/HealthBar")
-require("src/HitSplash")
-require("src/DamageArea")
-require("src/MeleeTarget")
-require("src/Health")
-require("src/Controller")
-require("src/Vector")
-require("src/Enemy")
-require("src/Player")
-require("src/Box")
-require("src/PhysicsComponent")
 
+-- Libraries
 wf = require("libs/windfield")
+
+-- Utils
+require("src/utils/HealthBar")
+require("src/utils/Controller")
+require("src/utils/Vector")
+
+
+-- Components
+require("src/Components/HealthComponent")
+require("src/Components/MeleeTargetComponent")
+require("src/Components/PhysicsComponent")
+
+
+-- Entities
+require("src/entities/HitSplashEntity")
+require("src/entities/DamageAreaEntity")
+require("src/entities/EnemyEntity")
+require("src/entities/PlayerEntity")
+require("src/entities/BoxEntity")
 
 
 function love.load()
@@ -18,11 +27,11 @@ function love.load()
 	world = wf.newWorld()
 
 	love.graphics.setBackgroundColor(0.8, 0.8, 0.8)
-	player = Player()
+	player = PlayerEntity()
 	enemies = {}
 
-	local box1 = Box(Vector(100, 300))
-	local box2 = Box(Vector(300, 300))
+	local box1 = BoxEntity(Vector(100, 300))
+	local box2 = BoxEntity(Vector(300, 300))
 end
 
 function love.update(dt)
@@ -64,7 +73,7 @@ function love.keypressed(key, scancode, isrepeat)
 	end
 
 	if key == 'h' then
-		table.insert(enemies, Enemy())
+		table.insert(enemies, EnemyEntity())
 	end
 end
 

@@ -1,8 +1,8 @@
-function Enemy()
+function EnemyEntity()
 	local self = {}
 	local radius = 30
 	local speed = 120
-	local health = Health(40, "Zombie")
+	local health = HealthComponent(40, "Zombie")
 	local physics = PhysicsComponent(Vector(400, 400), radius)
 
 	local function update(dt, player)

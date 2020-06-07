@@ -1,6 +1,6 @@
-HitSplash = {}
+HitSplashEntity = {}
 
-function HitSplash:new(value, x, y)
+function HitSplashEntity:new(value, x, y)
 	local hitSplash = {}
 	setmetatable(hitSplash, self)
 	self.__index = self
@@ -14,7 +14,7 @@ function HitSplash:new(value, x, y)
 	return hitSplash
 end
 
-function HitSplash:update(dt)
+function HitSplashEntity:update(dt)
 	self.speed = self.speed * 0.95
 	if self.duration > 0 then
 		self.duration = self.duration - dt * 1000
@@ -24,7 +24,7 @@ function HitSplash:update(dt)
 	end
 end
 
-function HitSplash:draw()
+function HitSplashEntity:draw()
 	if self.value < 0 then
 		love.graphics.setColor(1, 0, 0)
 	else

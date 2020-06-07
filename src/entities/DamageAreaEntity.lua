@@ -1,5 +1,5 @@
 
-function DamageArea(value, x, y, size)
+function DamageAreaEntity(value, x, y, size)
 
 	local position = Vector(x, y)
 	local _value = value or 0

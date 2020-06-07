@@ -1,4 +1,4 @@
-function Health(verticalOffset, name)
+function HealthComponent(verticalOffset, name)
 
 	local _health = 100
 	local _maxHealth = 100
@@ -12,7 +12,7 @@ function Health(verticalOffset, name)
 
 			_health = _health - damage
 			table.remove(_damageToTake, key)
-			table.insert(_hitSplashes, HitSplash:new(-damage, _x, _y))
+			table.insert(_hitSplashes, HitSplashEntity:new(-damage, _x, _y))
 
 			if _health < 0 then
 				_health = 0

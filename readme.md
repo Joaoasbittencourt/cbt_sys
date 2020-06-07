@@ -18,13 +18,11 @@
 - [x] Add Damage Animation
 - [x] Add Attack Target
 - [ ] Separate logic (Entities, components, systems and world)
-- [ ] Add Attack Functionality
-- [ ] Implement a better collision system with lib
-    - [x] damage an enemy
-	- [ ] set a cooldown for each attack
-- [ ] Add enemy
+- [x] Add Attack Functionality
+- [x] Implement a better collision system with lib
+- [x] Add enemy
+- [x] HealthManagerComponent
 - [ ] Add Attack Animation
-- [ ] HealthManagerComponent
 - [ ] Create A single entity table (is this optimal?)
 - [ ] Combat rules (cooldown and etc)
 - [ ] Separe code in entities and components

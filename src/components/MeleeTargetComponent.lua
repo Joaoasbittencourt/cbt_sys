@@ -1,4 +1,4 @@
-function MeleeTarget()
+function MeleeTargetComponent()
 
 	local self = {}
 

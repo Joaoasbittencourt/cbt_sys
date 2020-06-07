@@ -1,35 +1,41 @@
-Player = {}
+function Player()
 
-function Player:new(player)
-	player = player or {}
-	setmetatable(player, self)
-	self.__index = self
+	local radius = 30
+	local speed = 200
+	local position = Vector(300, 300)
+	local health = Health(radius)
+	local target = MeleeTarget()
 
-	player.radius = 30
-	player.speed = 200
-	player.position = Vector(100, 100)
-	player.health = Health(player.radius)
-	player.target = MeleeTarget()
+	local update = function(dt)
+		local x = position.getX()
+		local y = position.getY()
 
-	return player
-end
+		health.update(dt, x, y)
+		target.update(position, radius)
 
-function Player:update(dt)
-	local x = self.position.getX()
-	local y = self.position.getY()
+		if health.isDead() then return end
 
-	self.health.update(dt, x, y)
-	self.target.update(self.position, self.radius)
+		position.set(
+			position.add(
+				Controller.getDxy().toVec().mul(speed * dt)
+			)
+		)
+	end
 
-	if self.health.isDead() then return end
-	self.position = self.position.add(Controller.getDxy().toVec().mul(self.speed * dt))
+	local draw = function()
+		love.graphics.setColor(0, 0, 1);
+		love.graphics.circle("fill", position.getX(), position.getY() , radius)
+		love.graphics.setColor(0, 1, 0);
+		health.draw()
+		target.draw()
+	end
 
-end
+	return {
+		update = update,
+		draw = draw,
+		position = position,
+		radius = radius,
+		health = health
+	}
 
-function Player:draw()
-	love.graphics.setColor(0, 0, 1);
-	love.graphics.circle("fill", self.position.getX(), self.position.getY() , self.radius)
-	love.graphics.setColor(0, 1, 0);
-	self.health.draw()
-	self.target.draw()
 end

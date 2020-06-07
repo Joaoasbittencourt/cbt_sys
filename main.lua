@@ -12,12 +12,12 @@ enemies = {}
 
 function love.load()
 	love.graphics.setBackgroundColor(0.8, 0.8, 0.8)
-	player = Player:new()
+	player = Player()
 end
 
 function love.update(dt)
 
-	player:update(dt)
+	player.update(dt)
 
 	for key, enemy in pairs(enemies) do
 		enemy.update(dt, player)
@@ -25,7 +25,7 @@ function love.update(dt)
 end
 
 function love.draw()
-	player:draw()
+	player.draw()
 	for key, enemy in pairs(enemies) do
 		enemy.draw()
 	end

@@ -36,6 +36,7 @@ function love.update(dt)
 		enemy.update(dt, player)
 
 		if enemy.health.isDead() then
+			enemy.destroy()
 			table.remove(enemies, key)
 		end
 	end

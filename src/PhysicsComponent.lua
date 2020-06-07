@@ -24,6 +24,10 @@ function PhysicsComponent(initialPosition, radius, type)
 		return Vector(x, y)
 	end
 
+	self.destroy = function()
+		self.collider:destroy()
+	end
+
 	self.setSpeed = function (vector)
 		self.collider:setLinearVelocity(vector.getX(), vector.getY())
 	end

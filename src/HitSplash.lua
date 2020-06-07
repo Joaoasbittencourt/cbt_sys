@@ -1,36 +1,34 @@
-function HitSplash(value, x, y)
+HitSplash = {}
 
-	local _x = x
-	local _y = y
-	local _duration = 800
-	local _speed = 200
+function HitSplash:new(value, x, y)
+	local hitSplash = {}
+	setmetatable(hitSplash, self)
+	self.__index = self
 
-	local function getDuration()
-		return _duration
+	hitSplash.x = x or 0
+	hitSplash.y = y or 0
+	hitSplash.value = value or 0
+	hitSplash.duration = 800
+	hitSplash.speed = 200
+
+	return hitSplash
+end
+
+function HitSplash:update(dt)
+	self.speed = self.speed * 0.95
+	if self.duration > 0 then
+		self.duration = self.duration - dt * 1000
+		self.y = self.y - dt * self.speed
+	else
+		self.duration = 0
 	end
+end
 
-	local function update(dt)
-		_speed = _speed * 0.95
-		if _duration > 0 then
-			_duration = _duration - dt * 1000
-			_y = _y - dt * _speed
-		else
-			_duration = 0
-		end
+function HitSplash:draw()
+	if self.value < 0 then
+		love.graphics.setColor(1, 0, 0)
+	else
+		love.graphics.setColor(0, 1, 0)
 	end
-
-	local function draw()
-		if value < 0 then
-			love.graphics.setColor(1, 0, 0)
-		else
-			love.graphics.setColor(0, 1, 0)
-		end
-		love.graphics.print(value, _x, _y)
-	end
-
-	return {
-		getDuration = getDuration,
-		update = update,
-		draw = draw
-	}
+	love.graphics.print(self.value, self.x, self.y)
 end

@@ -12,7 +12,7 @@ function Health(verticalOffset)
 
 			_health = _health - damage
 			table.remove(_damageToTake, key)
-			table.insert(_hitSplashes, HitSplash(-damage, _x, _y))
+			table.insert(_hitSplashes, HitSplash:new(-damage, _x, _y))
 
 			if _health < 0 then
 				_health = 0
@@ -22,8 +22,8 @@ function Health(verticalOffset)
 
 	local function _updateHitSplashes(dt)
 		for key, hitsplash in pairs(_hitSplashes) do
-			hitsplash.update(dt)
-			if (hitsplash.getDuration() <= 0) then
+			hitsplash:update(dt)
+			if (hitsplash.duration <= 0) then
 				table.remove(_hitSplashes, key)
 			end
 		end
@@ -31,14 +31,14 @@ function Health(verticalOffset)
 
 	local function _renderHitSplashes()
 		for key, hitsplash in pairs(_hitSplashes) do
-			hitsplash.draw()
+			hitsplash:draw()
 		end
 	end
 
 	local function _heal(value)
 		if _maxHealth >= _health + value then
 			_health = _health + value
-			table.insert(_hitSplashes, HitSplash(value, _x, _y))
+			table.insert(_hitSplashes, HitSplash:new(value, _x, _y))
 		end
 	end
 

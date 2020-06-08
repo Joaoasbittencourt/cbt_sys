@@ -28,15 +28,14 @@ require("src/entities/BoxEntity")
 function love.load()
 
 	map = Loader.loadTiledMap("assets/tiles/tile_map")
-	camera.setBoundary(0, 0, 2000, 3000)
+	camera.setBoundary(0, 0, 1024, 1024)
 	world = wf.newWorld()
 
-	love.graphics.setBackgroundColor(0.8, 0.8, 0.8)
 	player = PlayerEntity()
 	enemies = {}
 
-	local box1 = BoxEntity(Vector(100, 300))
-	local box2 = BoxEntity(Vector(300, 300))
+	local box1 = BoxEntity(Vector(400, 300))
+	local box2 = BoxEntity(Vector(500, 700))
 end
 
 function love.update(dt)

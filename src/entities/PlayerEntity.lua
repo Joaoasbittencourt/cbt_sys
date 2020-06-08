@@ -5,7 +5,7 @@ function PlayerEntity()
 	local speed = 200
 	local health = HealthComponent(radius, name)
 	local target = MeleeTargetComponent()
-	local physics = PhysicsComponent(Vector(100, 100), radius)
+	local physics = PhysicsComponent(Vector(500, 400), radius)
 
 	local update = function(dt)
 		local position = physics.getPosition()

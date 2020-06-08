@@ -38,13 +38,29 @@
  <tile id="231" terrain="1,1,1,1"/>
  <tile id="232" terrain="1,1,1,1"/>
  <tile id="233" terrain="1,1,1,1"/>
- <tile id="259" terrain="2,2,2,"/>
- <tile id="260" terrain="2,2,,2"/>
- <tile id="280" terrain="2,,2,2"/>
- <tile id="281" terrain=",2,2,2"/>
+ <tile id="259" terrain="2,2,2,">
+  <properties>
+   <property name="collidable" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="260" terrain="2,2,,2">
+  <properties>
+   <property name="collidable" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="280" terrain="2,,2,2">
+  <properties>
+   <property name="collidable" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="281" terrain=",2,2,2">
+  <properties>
+   <property name="collidable" type="bool" value="true"/>
+  </properties>
+ </tile>
  <tile id="300" terrain=",,,2">
   <properties>
-   <property name="walkable" type="bool" value="true"/>
+   <property name="collidable" type="bool" value="true"/>
   </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="32" height="32"/>
@@ -52,7 +68,7 @@
  </tile>
  <tile id="301" terrain=",,2,2">
   <properties>
-   <property name="walkable" type="bool" value="true"/>
+   <property name="collidable" type="bool" value="true"/>
   </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="32" height="32"/>
@@ -60,7 +76,7 @@
  </tile>
  <tile id="302" terrain=",,2,">
   <properties>
-   <property name="walkable" type="bool" value="true"/>
+   <property name="collidable" type="bool" value="true"/>
   </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="32" height="32"/>
@@ -68,7 +84,7 @@
  </tile>
  <tile id="321" terrain=",2,,2">
   <properties>
-   <property name="walkable" type="bool" value="true"/>
+   <property name="collidable" type="bool" value="true"/>
   </properties>
   <objectgroup draworder="index" id="3">
    <object id="4" x="0" y="0" width="32" height="32"/>
@@ -77,7 +93,7 @@
  <tile id="322" terrain="2,2,2,2"/>
  <tile id="323" terrain="2,,2,">
   <properties>
-   <property name="walkable" type="bool" value="true"/>
+   <property name="collidable" type="bool" value="true"/>
   </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="32" height="32"/>
@@ -85,7 +101,7 @@
  </tile>
  <tile id="342" terrain=",2,,">
   <properties>
-   <property name="walkable" type="bool" value="true"/>
+   <property name="collidable" type="bool" value="true"/>
   </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="32" height="32"/>
@@ -93,7 +109,7 @@
  </tile>
  <tile id="343" terrain="2,2,,">
   <properties>
-   <property name="walkable" type="bool" value="true"/>
+   <property name="collidable" type="bool" value="true"/>
   </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="32" height="32"/>
@@ -101,7 +117,7 @@
  </tile>
  <tile id="344" terrain="2,,,">
   <properties>
-   <property name="walkable" type="bool" value="true"/>
+   <property name="collidable" type="bool" value="true"/>
   </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="32" height="32"/>

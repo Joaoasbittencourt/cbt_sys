@@ -42,10 +42,26 @@
   <tile id="231" terrain="1,1,1,1"/>
   <tile id="232" terrain="1,1,1,1"/>
   <tile id="233" terrain="1,1,1,1"/>
-  <tile id="259" terrain="2,2,2,"/>
-  <tile id="260" terrain="2,2,,2"/>
-  <tile id="280" terrain="2,,2,2"/>
-  <tile id="281" terrain=",2,2,2"/>
+  <tile id="259" terrain="2,2,2,">
+   <properties>
+    <property name="collidable" type="bool" value="true"/>
+   </properties>
+  </tile>
+  <tile id="260" terrain="2,2,,2">
+   <properties>
+    <property name="collidable" type="bool" value="true"/>
+   </properties>
+  </tile>
+  <tile id="280" terrain="2,,2,2">
+   <properties>
+    <property name="collidable" type="bool" value="true"/>
+   </properties>
+  </tile>
+  <tile id="281" terrain=",2,2,2">
+   <properties>
+    <property name="collidable" type="bool" value="true"/>
+   </properties>
+  </tile>
   <tile id="300" terrain=",,,2">
    <properties>
     <property name="collidable" type="bool" value="true"/>
@@ -78,11 +94,7 @@
     <object id="4" x="0" y="0" width="32" height="32"/>
    </objectgroup>
   </tile>
-  <tile id="322" terrain="2,2,2,2">
-   <properties>
-    <property name="collidable" type="bool" value="true"/>
-   </properties>
-  </tile>
+  <tile id="322" terrain="2,2,2,2"/>
   <tile id="323" terrain="2,,2,">
    <properties>
     <property name="collidable" type="bool" value="true"/>

@@ -27,15 +27,18 @@ require("src/entities/BoxEntity")
 
 function love.load()
 
+	world = wf.newWorld()
+
 	map = Loader.loadTiledMap("assets/tiles/tile_map")
 	camera.setBoundary(0, 0, 1024, 1024)
-	world = wf.newWorld()
 
 	player = PlayerEntity()
 	enemies = {}
 
 	local box1 = BoxEntity(Vector(400, 300))
 	local box2 = BoxEntity(Vector(500, 700))
+	local box3 = BoxEntity(Vector(400, 400))
+	local box4 = BoxEntity(Vector(300, 100))
 end
 
 function love.update(dt)

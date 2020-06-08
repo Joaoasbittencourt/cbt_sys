@@ -182,18 +182,30 @@ return {
         },
         {
           id = 259,
+          properties = {
+            ["collidable"] = true
+          },
           terrain = { 2, 2, 2, -1 }
         },
         {
           id = 260,
+          properties = {
+            ["collidable"] = true
+          },
           terrain = { 2, 2, -1, 2 }
         },
         {
           id = 280,
+          properties = {
+            ["collidable"] = true
+          },
           terrain = { 2, -1, 2, 2 }
         },
         {
           id = 281,
+          properties = {
+            ["collidable"] = true
+          },
           terrain = { -1, 2, 2, 2 }
         },
         {
@@ -330,9 +342,6 @@ return {
         },
         {
           id = 322,
-          properties = {
-            ["collidable"] = true
-          },
           terrain = { 2, 2, 2, 2 }
         },
         {

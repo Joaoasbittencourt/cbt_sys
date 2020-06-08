@@ -12,7 +12,6 @@ function PlayerEntity()
 
 		health.update(dt, position.getX(), position.getY())
 		target.update(position, radius)
-
 		camera.lookAt(position.getX(), position.getY())
 
 		if health.isDead() then return end
@@ -36,5 +35,4 @@ function PlayerEntity()
 		health = health,
 		getTarget = function() return target end
 	}
-
 end

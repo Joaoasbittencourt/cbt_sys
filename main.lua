@@ -3,18 +3,19 @@
 wf = require("libs/windfield")
 camera = require("src/utils/Camera")
 
+-- assets
+require("assets/tiles/tile_map")
 
 -- Utils
 require("src/utils/HealthBar")
 require("src/utils/Controller")
+require("src/utils/Loader")
 require("src/utils/Vector")
-
 
 -- Components
 require("src/Components/HealthComponent")
 require("src/Components/MeleeTargetComponent")
 require("src/Components/PhysicsComponent")
-
 
 -- Entities
 require("src/entities/HitSplashEntity")
@@ -26,13 +27,13 @@ require("src/entities/BoxEntity")
 
 function love.load()
 
+	map = Loader.loadTiledMap("assets/tiles/tile_map")
 	camera.setBoundary(0, 0, 2000, 3000)
 	world = wf.newWorld()
 
 	love.graphics.setBackgroundColor(0.8, 0.8, 0.8)
 	player = PlayerEntity()
 	enemies = {}
-
 
 	local box1 = BoxEntity(Vector(100, 300))
 	local box2 = BoxEntity(Vector(300, 300))
@@ -56,6 +57,7 @@ end
 function love.draw()
 	camera.draw(
 		function()
+			map:draw()
 			world:draw()
 			player.draw()
 			for key, enemy in pairs(enemies) do

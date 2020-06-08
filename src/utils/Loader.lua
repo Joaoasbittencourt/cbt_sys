@@ -2,6 +2,7 @@ Loader = {}
 
 local tilesPath = "assets/tiles/"
 
+
 function Loader.loadTiledMap(path)
 	local map = require(path)
 
@@ -39,6 +40,7 @@ function Loader.loadTiledMap(path)
 	end
 
 	function map:draw()
+		love.graphics.setColor(1, 1, 1)
 		for i, layer in ipairs(self.layers) do
 			for y = 0, layer.height - 1 do
 				for x = 0, layer.width - 1 do
@@ -49,7 +51,6 @@ function Loader.loadTiledMap(path)
 						local quad = self.quads[tileId]
 						local xx = x * self.tileset.tilewidth
 						local yy = y * self.tileset.tileheight
-
 						love.graphics.draw(self.image, quad, xx, yy)
 					end
 				end

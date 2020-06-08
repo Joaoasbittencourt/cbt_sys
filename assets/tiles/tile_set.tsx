@@ -38,12 +38,22 @@
  <tile id="231" terrain="1,1,1,1"/>
  <tile id="232" terrain="1,1,1,1"/>
  <tile id="233" terrain="1,1,1,1"/>
+ <tile id="258">
+  <properties>
+   <property name="collidable" type="bool" value="true"/>
+  </properties>
+ </tile>
  <tile id="259" terrain="2,2,2,">
   <properties>
    <property name="collidable" type="bool" value="true"/>
   </properties>
  </tile>
  <tile id="260" terrain="2,2,,2">
+  <properties>
+   <property name="collidable" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="279">
   <properties>
    <property name="collidable" type="bool" value="true"/>
   </properties>
@@ -122,5 +132,15 @@
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="32" height="32"/>
   </objectgroup>
+ </tile>
+ <tile id="418">
+  <properties>
+   <property name="collidable" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="419">
+  <properties>
+   <property name="collidable" type="bool" value="true"/>
+  </properties>
  </tile>
 </tileset>

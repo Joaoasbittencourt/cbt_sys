@@ -42,13 +42,45 @@
  <tile id="260" terrain="2,2,,2"/>
  <tile id="280" terrain="2,,2,2"/>
  <tile id="281" terrain=",2,2,2"/>
- <tile id="300" terrain=",,,2"/>
- <tile id="301" terrain=",,2,2"/>
- <tile id="302" terrain=",,2,"/>
- <tile id="321" terrain=",2,,2"/>
+ <tile id="300" terrain=",,,2">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="32" height="32"/>
+  </objectgroup>
+ </tile>
+ <tile id="301" terrain=",,2,2">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="32" height="32"/>
+  </objectgroup>
+ </tile>
+ <tile id="302" terrain=",,2,">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="32" height="32"/>
+  </objectgroup>
+ </tile>
+ <tile id="321" terrain=",2,,2">
+  <objectgroup draworder="index" id="3">
+   <object id="4" x="0" y="0" width="32" height="32"/>
+  </objectgroup>
+ </tile>
  <tile id="322" terrain="2,2,2,2"/>
- <tile id="323" terrain="2,,2,"/>
- <tile id="342" terrain=",2,,"/>
- <tile id="343" terrain="2,2,,"/>
- <tile id="344" terrain="2,,,"/>
+ <tile id="323" terrain="2,,2,">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="32" height="32"/>
+  </objectgroup>
+ </tile>
+ <tile id="342" terrain=",2,,">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="32" height="32"/>
+  </objectgroup>
+ </tile>
+ <tile id="343" terrain="2,2,,">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="32" height="32"/>
+  </objectgroup>
+ </tile>
+ <tile id="344" terrain="2,,,">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="32" height="32"/>
+  </objectgroup>
+ </tile>
 </tileset>

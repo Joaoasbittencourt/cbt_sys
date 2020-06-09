@@ -32,8 +32,11 @@ local function setBoundary(l, t, w, h)
 	clampCamera()
 end
 
-local function lookAt(x,y)
-	setViewport(math.floor(x - viewport.w / 2), math.floor(y - viewport.h / 2))
+local function lookAt(position)
+	setViewport(
+		math.floor(position.getX() - viewport.w / 2),
+		math.floor(position.getY() - viewport.h / 2)
+	)
 end
 
 local function draw(f)

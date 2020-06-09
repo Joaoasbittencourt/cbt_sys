@@ -22,6 +22,12 @@ function Controller.getDxy()
 	return {
 		dx = dx,
 		dy = dy,
-		toVec = toVec
+		toVec = toVec,
 	}
+end
+
+function Controller.getGlobalMousePosition()
+	local mx, my = love.mouse.getPosition()
+	local cameraX, cameraY = camera.getViewport()
+	return Vector(mx + cameraX, my + cameraY)
 end

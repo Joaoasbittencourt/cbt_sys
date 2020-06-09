@@ -23,13 +23,24 @@
 - [x] Add enemy
 - [x] HealthManagerComponent
 - [x] Add Camera
+- [ ] Add Skills
+- [ ] Hud with Skills and cooldowns
+- [ ] Animated Sprites to player
 - [ ] Add map with collidable tiles
 - [ ] Add Attack Animation
-- [ ] Combat rules (cooldown and etc)
-- [ ] Buff and Debuffs
+- [ ] Effects
+- [ ] Different Monsters and behaviors
 - [ ] Character classes
 - [ ] Loot system
-- [ ] Create a single entity table (is this optimal?)
 - [ ] Items and Equipments
-- [ ] networking support
 - [ ] Mobile Controls
+- [ ] Networking?
+
+## Other
+
+- [ ] Refactor MapLoader (store map colliders)
+- [ ] AreaSkillcomponent and MeleeTargetComponent must be replaced by the SkillShowSystem
+- [ ] hitsplashes and renderHealthBar to be animations
+- [ ] Create a single entity table (is this optimal?) (use remove = boolean)
+- [ ] Every entity must be equal and have an id
+- [ ] Better User Input

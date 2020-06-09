@@ -23,6 +23,9 @@ require("src/entities/DamageAreaEntity")
 require("src/entities/EnemyEntity")
 require("src/entities/PlayerEntity")
 
+-- Systems
+require("src/systems/SkillControllerSystem")
+
 
 function love.load()
 
@@ -33,13 +36,18 @@ function love.load()
 	camera.setBoundary(0, 0, 1024, 1024)
 	player = PlayerEntity()
 	enemies = {}
+	skills = SkillControllerSystem()
 end
 
 function love.update(dt)
 
-	player.update(dt)
 	world:update(dt)
+	player.update(dt)
+	camera.lookAt(player.getPosition())
+	skills.update(player.getPosition(), dt)
 
+
+	-- Send this handling to the EntitySystem
 	for key, enemy in pairs(enemies) do
 		enemy.update(dt, player)
 
@@ -48,6 +56,7 @@ function love.update(dt)
 			table.remove(enemies, key)
 		end
 	end
+
 end
 
 function love.draw()
@@ -58,6 +67,8 @@ function love.draw()
 			for key, enemy in pairs(enemies) do
 				enemy.draw()
 			end
+
+			skills.draw()
 
 			if showCollidables then
 				world:draw()

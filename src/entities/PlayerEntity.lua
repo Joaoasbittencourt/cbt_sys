@@ -12,7 +12,6 @@ function PlayerEntity()
 
 		health.update(dt, position.getX(), position.getY())
 		target.update(position, radius)
-		camera.lookAt(position.getX(), position.getY())
 
 		if health.isDead() then return end
 		collider.setSpeed(Controller.getDxy().toVec().mul(speed))
@@ -21,7 +20,7 @@ function PlayerEntity()
 	local draw = function()
 		local position = collider.getPositionVector()
 		love.graphics.setColor(0, 0, 1);
-		love.graphics.circle("fill", position.getX(), position.getY() , radius)
+		love.graphics.circle("fill", position.getX(), position.getY(), radius)
 		love.graphics.setColor(0, 1, 0);
 		health.draw()
 		target.draw()

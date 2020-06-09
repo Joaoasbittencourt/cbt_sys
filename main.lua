@@ -15,14 +15,13 @@ require("src/utils/Vector")
 -- Components
 require("src/Components/HealthComponent")
 require("src/Components/MeleeTargetComponent")
-require("src/Components/PhysicsComponent")
+require("src/Components/ColliderComponent")
 
 -- Entities
 require("src/entities/HitSplashEntity")
 require("src/entities/DamageAreaEntity")
 require("src/entities/EnemyEntity")
 require("src/entities/PlayerEntity")
-require("src/entities/BoxEntity")
 
 
 function love.load()
@@ -95,7 +94,7 @@ function love.mousepressed(x, y, button, istouch)
 
 	for key, enemy in pairs(enemies) do
 		if targetPos.distanceTo(enemy.getPosition()) < player.radius + enemy.getRadius() then
-			enemy.health.insertDamage(4 + math.floor(math.random() * 5))
+			enemy.health.insertDamage(20 + math.floor(math.random() * 5))
 			enemy.addImpact(player.getPosition(), 3000)
 		end
 	end

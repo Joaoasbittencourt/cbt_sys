@@ -1,10 +1,10 @@
 function EnemyEntity()
 	local self = {}
-	local radius = 30
+	local radius = 15
 	local speed = 120
 	local health = HealthComponent(40, "Zombie")
-	local physics = PhysicsComponent(Vector(400, 400), radius)
-	local attackCooldown = 2000
+	local collider = ColliderComponent(Vector(400, 400), radius, self)
+	local attackCooldown = 1000
 
 	local function _handleAttack(dt, playerPos, position)
 		if attackCooldown > 0 then
@@ -13,8 +13,8 @@ function EnemyEntity()
 
 		if playerPos.distanceTo(position) < player.radius + radius + 5 then
 			if attackCooldown <= 0 then
-				player.health.insertDamage(10 + math.floor(math.random() * 20))
-				attackCooldown = 2000
+				player.health.insertDamage(20 + math.floor(math.random() * 20))
+				attackCooldown = 1000
 			end
 		end
 	end
@@ -22,10 +22,10 @@ function EnemyEntity()
 	local function update(dt, player)
 
 		local playerPos = player.getPosition()
-		local position = physics.getPosition()
+		local position = collider.getPositionVector()
 
 		if playerPos.distanceTo(position) > player.radius + radius then
-			physics.setSpeed(position.directionTo(playerPos).mul(speed))
+			collider.setSpeed(position.directionTo(playerPos).mul(speed))
 		end
 
 		_handleAttack(dt, playerPos, position)
@@ -34,23 +34,23 @@ function EnemyEntity()
 	end
 
 	local function draw()
-		local position = physics.getPosition()
+		local position = collider.getPositionVector()
 		love.graphics.setColor(0.8, 0.8, 0.2)
 		love.graphics.circle("fill", position.getX(), position.getY(), radius)
 		health.draw()
 	end
 
 	local function destroy()
-		physics.destroy()
+		collider.dispose()
 	end
 
 	self.destroy = destroy
 	self.update = update
 	self.draw = draw
 	self.health = health
-	self.getPosition = function() return physics.getPosition() end
+	self.getPosition = function() return collider.getPositionVector() end
 	self.getRadius = function() return radius end
-	self.addImpact = physics.addImpact
+	self.addImpact = collider.addImpact
 
 	return self
 end

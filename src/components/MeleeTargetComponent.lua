@@ -3,7 +3,7 @@ function MeleeTargetComponent()
 	local self = {}
 
 	local position = Vector(0, 0)
-	local radius = 30
+	local radius = 20
 
 	local function update(originVec, distance)
 		local mx, my = love.mouse.getPosition()
@@ -19,6 +19,7 @@ function MeleeTargetComponent()
 	end
 
 	local function draw()
+		love.graphics.setColor(0.9, 0.9, 0.9)
 		love.graphics.circle("line", position.getX(), position.getY(), radius)
 	end
 

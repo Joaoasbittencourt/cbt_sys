@@ -4,7 +4,7 @@ function SkillControllerSystem()
 	-- this must be a system or something global that has to do
 	-- with the skill manager, a controler or something like that
 	-- Will be able to read skills and count their cooldown, manage their cooldowns
-	-- have a globla cooldown, aswell
+	-- have a global cooldown, aswell
 	-- skill can also have no effect to selected area, but after some moment can spawn damage areas and they will damage monsters
 
 	local onSelection = false
@@ -12,8 +12,6 @@ function SkillControllerSystem()
 	local skill = {}
 
 	-- Must pass the Skill used, and everything should be handled
-	-- self.startSkill()
-
 	self.peformSkill = function()
 		onSelection = true
 		skill = {

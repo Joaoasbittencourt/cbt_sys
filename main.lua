@@ -31,21 +31,13 @@ require("src/systems/SkillControllerSystem")
 
 
 function love.load()
-
 	showCollidables = false
-
 	world = wf.newWorld()
 	map = Loader.loadTiledMap("assets/tiles/tile_map")
 	camera.setBoundary(0, 0, 1024, 1024)
 	player = PlayerEntity()
 	enemies = {}
 	skills = SkillControllerSystem()
-
-	col = world:newCircleCollider(
-		400,
-		400,
-		30
-	)
 end
 
 function love.update(dt)
@@ -72,12 +64,10 @@ function love.draw()
 		function()
 			map:draw()
 			player.draw()
+			skills.draw()
 			for key, enemy in pairs(enemies) do
 				enemy.draw()
 			end
-
-			skills.draw()
-
 			if showCollidables then
 				world:draw()
 			end

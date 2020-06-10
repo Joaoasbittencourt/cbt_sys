@@ -564,15 +564,23 @@ end
 function World:queryCircleArea(x, y, radius, collision_class_names)
     if not collision_class_names then collision_class_names = {'All'} end
     if self.query_debug_drawing_enabled then table.insert(self.query_debug_draw, {type = 'circle', x = x, y = y, r = radius, frames = self.draw_query_for_n_frames}) end
-    
-    local colliders = self:_queryBoundingBox(x-radius, y-radius, x+radius, y+radius) 
+
+    local colliders = self:_queryBoundingBox(x-radius, y-radius, x+radius, y+radius)
     local outs = {}
     for _, collider in ipairs(colliders) do
         if self:collisionClassInCollisionClassesList(collider.collision_class, collision_class_names) then
             for _, fixture in ipairs(collider.body:getFixtures()) do
-                if self.wf.Math.polygon.getCircleIntersection(x, y, radius, {collider.body:getWorldPoints(fixture:getShape():getPoints())}) then
-                    table.insert(outs, collider)
-                    break
+                if(fixture:getShape():getType() == 'circle') then
+                    local x2, y2 = collider.body:getWorldPoint(fixture:getShape():getPoint())
+                    if self.wf.Math.circle.getCircleIntersection(x, y, radius, x2 , y2 , fixture:getShape():getRadius()) then
+                        table.insert(outs, collider)
+                        break
+                    end
+                else
+                    if self.wf.Math.polygon.getCircleIntersection(x, y, radius, {collider.body:getWorldPoints(fixture:getShape():getPoints())}) then
+                        table.insert(outs, collider)
+                        break
+                    end
                 end
             end
         end

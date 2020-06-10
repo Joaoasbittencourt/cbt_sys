@@ -25,7 +25,7 @@ function EnemyEntity()
 		local position = collider.getPositionVector()
 
 		if playerPos.distanceTo(position) > player.radius + radius then
-			collider.setSpeed(position.directionTo(playerPos).mul(speed))
+			collider:setSpeed(position.directionTo(playerPos).mul(speed))
 		end
 
 		_handleAttack(dt, playerPos, position)
@@ -41,7 +41,7 @@ function EnemyEntity()
 	end
 
 	local function destroy()
-		collider.dispose()
+		collider:destroy()
 	end
 
 	self.destroy = destroy

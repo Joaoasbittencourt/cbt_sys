@@ -31,3 +31,7 @@ function Controller.getGlobalMousePosition()
 	local cameraX, cameraY = camera.getViewport()
 	return Vector(mx + cameraX, my + cameraY)
 end
+
+function Controller.isLeftClicking()
+	return love.mouse.isDown(1)
+end

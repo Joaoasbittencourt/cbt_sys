@@ -1,5 +1,7 @@
 function PlayerEntity()
 
+	local self = {}
+
 	local name = "João Pedro"
 	local radius = 15
 	local speed = 200
@@ -9,12 +11,11 @@ function PlayerEntity()
 
 	local update = function(dt)
 		local position = collider.getPositionVector()
-
 		health.update(dt, position.getX(), position.getY())
 		target.update(position, radius)
 
 		if health.isDead() then return end
-		collider.setSpeed(Controller.getDxy().toVec().mul(speed))
+		collider:setSpeed(Controller.getDxy().toVec().mul(speed))
 	end
 
 	local draw = function()
@@ -26,12 +27,13 @@ function PlayerEntity()
 		target.draw()
 	end
 
-	return {
-		getPosition = collider.getPositionVector,
-		update = update,
-		draw = draw,
-		radius = radius,
-		health = health,
-		getTarget = function() return target end
-	}
+
+		self.getPosition = collider.getPositionVector
+		self.update = update
+		self.draw = draw
+		self.radius = radius
+		self.health = health
+		self.getTarget = function() return target end
+
+	return self
 end

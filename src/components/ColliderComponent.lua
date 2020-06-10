@@ -6,29 +6,17 @@ function ColliderComponent(initialPosition, radius, parent)
 		radius
 	)
 
-	collider.getParent = function()
+	function collider:getParent()
 		return parent
 	end
 
-	collider.getPositionVector = function ()
+	function collider:getPositionVector()
 		local x, y = collider:getPosition()
 		return Vector(x, y)
 	end
 
-	collider.addImpact = function(sourcePosition, magnitude)
-		local impulse = sourcePosition
-			.directionTo(collider.getPositionVector())
-			.getUnit().mul(magnitude)
-
-		collider:applyLinearImpulse(impulse.getX(), impulse.getY())
-	end
-
-	collider.setSpeed = function (vector)
+	function collider:setSpeed(vector)
 		collider:setLinearVelocity(vector.getX(), vector.getY())
-	end
-
-	collider.dispose = function()
-		collider:destroy()
 	end
 
 	return collider

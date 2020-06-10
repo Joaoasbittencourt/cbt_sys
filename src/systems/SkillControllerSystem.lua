@@ -7,44 +7,57 @@ function SkillControllerSystem()
 	-- have a globla cooldown, aswell
 	-- skill can also have no effect to selected area, but after some moment can spawn damage areas and they will damage monsters
 
-	local onSelection = 1
-
-	local radius = 50
-	local range = 300
+	local onSelection = false
 	local origin = Vector(0, 0)
+	local skill = {}
 
 	-- Must pass the Skill used, and everything should be handled
 	-- self.startSkill()
 
-	self.query = function(position, radius, onSelect)
+	self.peformSkill = function()
+		onSelection = true
+		skill = {
+			baseDamage = 40,
+			varDamage = 30,
+			radius = 50,
+			range = 300
+		}
+	end
 
-		local entities = {}
-		local colliders = world:queryCircleArea(position.getX(), position.getY(), radius)
+	local resolveSkill = function()
+
+		onSelection = false
+		local position = Controller.getGlobalMousePosition()
+		local colliders = world:queryCircleArea(position.getX(), position.getY(), skill.radius)
 
 		for k, collider in pairs(colliders) do
-			local entity = collider.getParent()
-			table.insert(entities, entity)
+			if collider.getParent ~= nil then
+				local entity = collider:getParent()
+				entity.health.insertDamage(
+					skill.baseDamage +
+					math.floor(skill.varDamage * math.random())
+				)
+			end
 		end
-
-		onSelect(entities)
 	end
 
 	self.update = function(position, dt)
 		origin.set(position)
-		Controller.getGlobalMousePosition()
+		if onSelection and Controller.isLeftClicking() then
+			resolveSkill()
+		end
 	end
 
 	self.draw = function ()
 		if onSelection then
-
 			love.graphics.setColor(0.25, 0.70, 255)
 
 			-- Drawing range
-			love.graphics.circle("line", origin.getX(), origin.getY(), range)
+			love.graphics.circle("line", origin.getX(), origin.getY(), skill.range)
 
 			-- Drawing selection Area
 			local mousePos = Controller.getGlobalMousePosition()
-			love.graphics.circle("line", mousePos.getX(), mousePos.getY(), radius)
+			love.graphics.circle("line", mousePos.getX(), mousePos.getY(), skill.radius)
 		end
 	end
 

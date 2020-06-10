@@ -1,6 +1,9 @@
 
 -- Libraries
+inspect = require("libs/inspect")
 wf = require("libs/windfield")
+
+-- Modules
 camera = require("src/utils/Camera")
 
 -- assets
@@ -37,6 +40,12 @@ function love.load()
 	player = PlayerEntity()
 	enemies = {}
 	skills = SkillControllerSystem()
+
+	col = world:newCircleCollider(
+		400,
+		400,
+		30
+	)
 end
 
 function love.update(dt)
@@ -46,13 +55,12 @@ function love.update(dt)
 	camera.lookAt(player.getPosition())
 	skills.update(player.getPosition(), dt)
 
-
 	-- Send this handling to the EntitySystem
 	for key, enemy in pairs(enemies) do
 		enemy.update(dt, player)
 
 		if enemy.health.isDead() then
-			enemy.destroy()
+			enemy:destroy()
 			table.remove(enemies, key)
 		end
 	end
@@ -83,7 +91,7 @@ function love.keypressed(key, scancode, isrepeat)
 	end
 
 	if key == 'q' then
-		player.health.insertDamage(4 + math.floor(math.random() * 5))
+		skills.peformSkill()
 	end
 
 	if key == 'e' then
@@ -106,7 +114,6 @@ function love.mousepressed(x, y, button, istouch)
 	for key, enemy in pairs(enemies) do
 		if targetPos.distanceTo(enemy.getPosition()) < player.radius + enemy.getRadius() then
 			enemy.health.insertDamage(20 + math.floor(math.random() * 5))
-			enemy.addImpact(player.getPosition(), 3000)
 		end
 	end
  end

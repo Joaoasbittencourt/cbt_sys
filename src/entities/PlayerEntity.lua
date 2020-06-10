@@ -7,7 +7,7 @@ function PlayerEntity()
 	local speed = 200
 	local health = HealthComponent(radius, name)
 	local target = MeleeTargetComponent()
-	local collider = ColliderComponent(Vector(500, 400), radius)
+	local collider = ColliderComponent(Vector(500, 400), radius, self)
 
 	local update = function(dt)
 		local position = collider.getPositionVector()

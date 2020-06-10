@@ -17,10 +17,11 @@ require("src/utils/HealthBar")
 require("src/utils/Controller")
 require("src/utils/Loader")
 require("src/utils/Vector")
+require("src/utils/Fonts")
 
 -- Components
 require("src/Components/HealthComponent")
-require("src/Components/MeleeTargetComponent")
+require("src/Components/WeaponComponent")
 require("src/Components/ColliderComponent")
 
 -- Entities
@@ -103,14 +104,3 @@ function love.keypressed(key, scancode, isrepeat)
 		showCollidables = not showCollidables
 	end
 end
-
-function love.mousepressed(x, y, button, istouch)
-
-	local targetPos = player.getTarget().getPosition()
-
-	for key, enemy in pairs(enemies) do
-		if targetPos.distanceTo(enemy.getPosition()) < player.radius + enemy.getRadius() then
-			enemy.health.insertDamage(20 + math.floor(math.random() * 5))
-		end
-	end
- end

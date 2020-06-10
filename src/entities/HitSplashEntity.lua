@@ -30,5 +30,6 @@ function HitSplashEntity:draw()
 	else
 		love.graphics.setColor(0, 1, 0)
 	end
+	love.graphics.setFont(Fonts.normal)
 	love.graphics.print(self.value, self.x, self.y)
 end

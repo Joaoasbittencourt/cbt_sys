@@ -1,7 +1,6 @@
-function MeleeTargetComponent()
+function WeaponComponent()
 
 	local self = {}
-
 	local position = Vector(0, 0)
 	local radius = 20
 

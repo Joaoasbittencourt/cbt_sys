@@ -6,7 +6,7 @@ function PlayerEntity()
 	local radius = 15
 	local speed = 200
 	local health = HealthComponent(radius, name)
-	local target = MeleeTargetComponent()
+	local target = WeaponComponent()
 	local collider = ColliderComponent(Vector(500, 400), radius, self)
 
 	local update = function(dt)

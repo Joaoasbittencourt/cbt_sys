@@ -22,5 +22,6 @@ function renderHealthBar(percentage, x, y, name)
 	love.graphics.setColor(1 - percentage, percentage, 0)
 	love.graphics.rectangle("fill", xOffset, yOffset, width * percentage, height)
 	love.graphics.setColor(0, 0, 0)
+	love.graphics.setFont(Fonts.small)
 	love.graphics.printf(name or "", xOffset, yOffset - nameFromBar, width, "center")
 end

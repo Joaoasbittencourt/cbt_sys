@@ -23,7 +23,7 @@
 - [x] Add enemy
 - [x] HealthManagerComponent
 - [x] Add Camera
-- [ ] Add Skills
+- [X] Add Skills
 - [ ] Hud with Skills and cooldowns
 - [ ] Animated Sprites to player
 - [ ] Add map with collidable tiles

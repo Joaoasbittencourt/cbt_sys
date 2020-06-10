@@ -27,13 +27,12 @@ function PlayerEntity()
 		target.draw()
 	end
 
-
-		self.getPosition = collider.getPositionVector
-		self.update = update
-		self.draw = draw
-		self.radius = radius
-		self.health = health
-		self.getTarget = function() return target end
+	self.getPosition = collider.getPositionVector
+	self.update = update
+	self.draw = draw
+	self.radius = radius
+	self.health = health
+	self.getTarget = function() return target end
 
 	return self
 end

@@ -6,8 +6,11 @@ wf = require("libs/windfield")
 -- Modules
 camera = require("src/utils/Camera")
 
--- assets
+-- Assets
 require("assets/tiles/tile_map")
+
+-- Animations
+require("src/animations/FireBombAnimation")
 
 -- Utils
 require("src/utils/HealthBar")
@@ -28,6 +31,7 @@ require("src/entities/PlayerEntity")
 
 -- Systems
 require("src/systems/SkillControllerSystem")
+require("src/systems/AnimationSystem")
 
 
 function love.load()
@@ -38,6 +42,7 @@ function love.load()
 	player = PlayerEntity()
 	enemies = {}
 	skills = SkillControllerSystem()
+	animationSystem = AnimationSystem()
 end
 
 function love.update(dt)
@@ -46,11 +51,11 @@ function love.update(dt)
 	player.update(dt)
 	camera.lookAt(player.getPosition())
 	skills.update(player.getPosition(), dt)
+	animationSystem.update(dt)
 
 	-- Send this handling to the EntitySystem
 	for key, enemy in pairs(enemies) do
 		enemy.update(dt, player)
-
 		if enemy.health.isDead() then
 			enemy:destroy()
 			table.remove(enemies, key)
@@ -71,8 +76,10 @@ function love.draw()
 			if showCollidables then
 				world:draw()
 			end
+			animationSystem.draw()
 		end
 	)
+
 end
 
 function love.keypressed(key, scancode, isrepeat)

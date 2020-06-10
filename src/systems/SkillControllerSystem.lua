@@ -7,6 +7,8 @@ function SkillControllerSystem()
 	-- have a global cooldown, aswell
 	-- skill can also have no effect to selected area, but after some moment can spawn damage areas and they will damage monsters
 
+	-- WE MUST REMOVE THE HARD CODED SKILL FROM HERE
+
 	local onSelection = false
 	local origin = Vector(0, 0)
 	local skill = {}
@@ -23,18 +25,16 @@ function SkillControllerSystem()
 	end
 
 	local resolveSkill = function()
-
 		onSelection = false
 		local position = Controller.getGlobalMousePosition()
 		local colliders = world:queryCircleArea(position.getX(), position.getY(), skill.radius)
+		local damage = skill.baseDamage + math.floor(skill.varDamage * math.random())
+		animationSystem.push(FireBombAnimation(position, skill.radius))
 
-		for k, collider in pairs(colliders) do
+		for _, collider in pairs(colliders) do
 			if collider.getParent ~= nil then
 				local entity = collider:getParent()
-				entity.health.insertDamage(
-					skill.baseDamage +
-					math.floor(skill.varDamage * math.random())
-				)
+				entity.health.insertDamage(damage)
 			end
 		end
 	end

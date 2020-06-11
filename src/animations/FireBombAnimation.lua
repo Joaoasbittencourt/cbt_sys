@@ -16,7 +16,7 @@ function FireBombAnimation(position, radius)
 
 	self.draw = function()
 		if duration > 0 then
-			love.graphics.setColor(0.7, 0.1, 0.1, 0.7 * duration / maxDuration)
+			love.graphics.setColor(0.5, 0.1, 0.1, 0.7 * duration / maxDuration)
 			love.graphics.circle("fill", position.getX(), position.getY(), radius)
 		end
 	end

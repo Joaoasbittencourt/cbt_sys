@@ -34,6 +34,14 @@ function Loader.loadTiledMap(path)
 	map.image = love.graphics.newImage(tilesPath .. tileset.image)
 	map.collidableIds = {}
 
+	map.getMapWidth = function()
+		return map.width * map.tilewidth
+	end
+
+	map.getMapHeight = function()
+		return map.height * map.tileheight
+	end
+
 	for y = 0, (image.height / tile.height) - 1 do
 		for x = 0, (image.width / tile.width) - 1 do
 			table.insert(

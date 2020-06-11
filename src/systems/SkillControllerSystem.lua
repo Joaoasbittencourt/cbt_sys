@@ -1,4 +1,4 @@
-function SkillControllerSystem()
+function SkillControllerSystem(caster)
 	local self = {}
 
 	-- this must be a system or something global that has to do
@@ -7,29 +7,33 @@ function SkillControllerSystem()
 	-- have a global cooldown, aswell
 	-- skill can also have no effect to selected area, but after some moment can spawn damage areas and they will damage monsters
 
-	-- WE MUST REMOVE THE HARD CODED SKILL FROM HERE
+	local maxGlobalCooldown = 1000
+	local globalCooldown = 0
 
-	local onSelection = false
-	local origin = Vector(0, 0)
-	local skill = {}
+	local selectedSkillId = 0
 
-	-- Must pass the Skill used, and everything should be handled
-	self.peformSkill = function()
-		onSelection = true
-		skill = {
-			baseDamage = 40,
-			varDamage = 30,
-			radius = 50,
-			range = 300
-		}
+	self.peformSkill = function(skillId)
+		selectedSkillId = skillId
+	end
+
+	local getSelectedSkill = function()
+		return Skills[selectedSkillId]
 	end
 
 	local resolveSkill = function()
-		onSelection = false
+
+		if globalCooldown > 0 then
+			-- skill still on cooldown
+			selectedSkillId = 0
+			return
+		end
+
+		local skill = getSelectedSkill()
+		local skillRadius = skill.getAreaOfEffectRadius()
 		local position = Controller.getGlobalMousePosition()
-		local colliders = world:queryCircleArea(position.getX(), position.getY(), skill.radius)
-		local damage = skill.baseDamage + math.floor(skill.varDamage * math.random())
-		animationSystem.push(FireBombAnimation(position, skill.radius))
+		local colliders = world:queryCircleArea(position.getX(), position.getY(), skillRadius)
+		local damage = skill.getDamage()
+		animationSystem.push(FireBombAnimation(position, skillRadius))
 
 		for _, collider in pairs(colliders) do
 			if collider.getParent ~= nil then
@@ -37,25 +41,35 @@ function SkillControllerSystem()
 				entity.health.insertDamage(damage)
 			end
 		end
+
+		selectedSkillId = 0
+		globalCooldown = maxGlobalCooldown
+
 	end
 
-	self.update = function(position, dt)
-		origin.set(position)
-		if onSelection and Controller.isLeftClicking() then
+	self.update = function(dt)
+
+		if globalCooldown > 0 then
+			globalCooldown = globalCooldown - dt * 1000
+		end
+		if globalCooldown < 0 then
+			globalCooldown = 0
+		end
+
+		if selectedSkillId > 0 and Controller.isLeftClicking() then
 			resolveSkill()
 		end
 	end
 
 	self.draw = function ()
-		if onSelection then
-			love.graphics.setColor(0.25, 0.70, 255)
+		local casterPosition = caster.getPosition()
+		local selectedSkill = getSelectedSkill()
 
-			-- Drawing range
-			love.graphics.circle("line", origin.getX(), origin.getY(), skill.range)
-
-			-- Drawing selection Area
+		if selectedSkillId > 0 then
 			local mousePos = Controller.getGlobalMousePosition()
-			love.graphics.circle("line", mousePos.getX(), mousePos.getY(), skill.radius)
+			love.graphics.setColor(0.25, 0.70, 255)
+			love.graphics.circle("line", casterPosition.getX(), casterPosition.getY(), selectedSkill.getRange())
+			love.graphics.circle("line", mousePos.getX(), mousePos.getY(), selectedSkill.getAreaOfEffectRadius())
 		end
 	end
 

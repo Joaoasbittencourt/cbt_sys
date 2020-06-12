@@ -1,6 +1,8 @@
 function UISystem()
 	local self = {}
-	local uiComponents = {}
+	local uiComponents = {
+		
+	}
 
 	self.push = function(animation)
 		table.insert(uiComponents, animation)
@@ -9,9 +11,6 @@ function UISystem()
 	self.update = function(dt)
 		for key, component in pairs(uiComponents) do
 			component.update(dt)
-			if component.isRemoved() then
-				table.remove(uiComponents, key)
-			end
 		end
 	end
 

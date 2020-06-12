@@ -1,29 +1,22 @@
-function SkillControllerSystem(caster)
+function SkillComponent(caster)
 	local self = {}
 
-	-- this must be a system or something global that has to do
-	-- with the skill manager, a controler or something like that
-	-- Will be able to read skills and count their cooldown, manage their cooldowns
-	-- have a global cooldown, aswell
-	-- skill can also have no effect to selected area, but after some moment can spawn damage areas and they will damage monsters
+	local skills = {
+		[1] = FireBomb()
+	}
 
+	local selectedSkillId = 0
 	local maxGlobalCooldown = 1000
 	local globalCooldown = 0
 
-	local selectedSkillId = 0
-
-	self.peformSkill = function(skillId)
-		selectedSkillId = skillId
-	end
-
 	local getSelectedSkill = function()
-		return Skills[selectedSkillId]
+		return skills[selectedSkillId]
 	end
 
 	local resolveSkill = function()
 
 		if globalCooldown > 0 then
-			-- skill still on cooldown
+			-- skill still on cooldown, show a dialog
 			selectedSkillId = 0
 			return
 		end
@@ -45,6 +38,10 @@ function SkillControllerSystem(caster)
 		selectedSkillId = 0
 		globalCooldown = maxGlobalCooldown
 
+	end
+
+	self.peformSkill = function(skillId)
+		selectedSkillId = skillId
 	end
 
 	self.update = function(dt)

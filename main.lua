@@ -12,7 +12,7 @@ require("assets/tiles/tile_map")
 require("src/animations/FireBombAnimation")
 
 -- Skills
-require("src.skills.Skills")
+require("src.skills.FireBomb")
 
 -- Utils
 require("src/utils/HealthBar")
@@ -22,9 +22,10 @@ require("src/utils/Vector")
 require("src/utils/Fonts")
 
 -- Components
-require("src/Components/HealthComponent")
-require("src/Components/WeaponComponent")
-require("src/Components/ColliderComponent")
+require("src/components/HealthComponent")
+require("src/components/WeaponComponent")
+require("src/components/ColliderComponent")
+require("src/components/SkillComponent")
 
 -- Entities
 require("src/entities/HitSplashEntity")
@@ -33,7 +34,6 @@ require("src/entities/EnemyEntity")
 require("src/entities/PlayerEntity")
 
 -- Systems
-require("src/systems/SkillControllerSystem")
 require("src/systems/AnimationSystem")
 require("src/systems/UISystem")
 require("src/systems/EnemySystem")
@@ -45,7 +45,6 @@ function love.load()
 	map = Loader.loadTiledMap("assets/tiles/tile_map")
 	camera.setMap(map)
 	player = PlayerEntity()
-	skill = SkillControllerSystem(player)
 	enemySystem = EnemySystem()
 	animationSystem = AnimationSystem()
 	uiSystem = UISystem()
@@ -56,20 +55,16 @@ function love.update(dt)
 	player.update(dt)
 	camera.lookAt(player.getPosition())
 	enemySystem.update(dt)
-	skill.update(dt)
 	animationSystem.update(dt)
 end
 
 function love.draw()
-	camera.draw(
-		function()
-			map:draw()
-			player.draw()
-			skill.draw()
-			enemySystem.draw()
-			animationSystem.draw()
-		end
-	)
+	camera.draw(function()
+		map:draw()
+		player.draw()
+		enemySystem.draw()
+		animationSystem.draw()
+	end)
 end
 
 function love.keypressed(key, scancode, isrepeat)
@@ -78,7 +73,7 @@ function love.keypressed(key, scancode, isrepeat)
 	end
 
 	if key == 'q' then
-		skill.peformSkill(1)
+		player.performSkill(1)
 	end
 
 	if key == 'e' then

@@ -33,14 +33,16 @@
 - [ ] Character classes
 - [ ] Loot system
 - [ ] Items and Equipments
-- [ ] Mobile Controls
-- [ ] Networking?
 
-## Other
+## Refactoring
 
-- [ ] Refactor MapLoader (store map colliders)
-- [ ] AreaSkillcomponent and MeleeTargetComponent must be replaced by the SkillShowSystem
-- [ ] hitsplashes and renderHealthBar to be animations
-- [ ] Create a single entity table (is this optimal?) (use remove = boolean)
-- [ ] Every entity must be equal and have an id
-- [ ] Better User Input
+- Refactor MapLoader (store map colliders)
+- Add more skills
+
+- hitsplashes and renderHealthBar to be animations?
+
+## Now on
+
+- Add the hud the hud and show skills and cooldowns...
+- Also, setup global cooldowns
+- Add Skills as a parameter and pass the player and the targets to calculate effect, or deploy a damage area or a bullet

@@ -50,9 +50,14 @@ local function getViewport()
 	return viewport.l, viewport.t, viewport.w, viewport.h
 end
 
+local function setMap(map)
+	setBoundary(0, 0, map.getMapWidth(), map.getMapHeight())
+end
+
 return {
 	setViewport = setViewport,
 	setBoundary = setBoundary,
+	setMap      = setMap,
 	getViewport = getViewport,
 	lookAt      = lookAt,
 	draw        = draw

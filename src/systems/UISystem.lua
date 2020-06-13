@@ -1,23 +1,12 @@
 function UISystem()
 	local self = {}
-	local uiComponents = {
-		
-	}
-
-	self.push = function(animation)
-		table.insert(uiComponents, animation)
-	end
+	local skillBar = SkillsBar()
 
 	self.update = function(dt)
-		for key, component in pairs(uiComponents) do
-			component.update(dt)
-		end
 	end
 
-	self.draw = function()
-		for _, component in pairs(uiComponents) do
-			component.draw()
-		end
+	self.draw = function(skillComponent)
+		skillBar.draw(skillComponent)
 	end
 
 	return self

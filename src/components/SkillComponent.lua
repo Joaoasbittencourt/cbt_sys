@@ -6,7 +6,7 @@ function SkillComponent(caster)
 	}
 
 	local selectedSkillId = 0
-	local maxGlobalCooldown = 1000
+	local maxGlobalCooldown = 2000
 	local globalCooldown = 0
 
 	local getSelectedSkill = function()
@@ -68,6 +68,14 @@ function SkillComponent(caster)
 			love.graphics.circle("line", casterPosition.getX(), casterPosition.getY(), selectedSkill.getRange())
 			love.graphics.circle("line", mousePos.getX(), mousePos.getY(), selectedSkill.getAreaOfEffectRadius())
 		end
+	end
+
+	self.getGlobalCooldown = function()
+		return globalCooldown
+	end
+
+	self.getMaxGlobalCooldown = function ()
+		return maxGlobalCooldown
 	end
 
 	return self

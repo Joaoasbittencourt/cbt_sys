@@ -8,6 +8,9 @@ camera = require("src/utils/Camera")
 -- Assets
 require("assets/tiles/tile_map")
 
+-- UI
+require("src.ui.SkillsBar")
+
 -- Animations
 require("src/animations/FireBombAnimation")
 
@@ -65,6 +68,7 @@ function love.draw()
 		enemySystem.draw()
 		animationSystem.draw()
 	end)
+	uiSystem.draw(player.skillComponent)
 end
 
 function love.keypressed(key, scancode, isrepeat)

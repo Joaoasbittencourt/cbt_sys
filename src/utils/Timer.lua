@@ -7,6 +7,10 @@ function Timer(maxDuration)
 		
 	end
 
+	self.update = function(dt)
+	
+	end
+
 	self.isRunning = function()
 		
 	end

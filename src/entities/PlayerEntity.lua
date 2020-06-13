@@ -30,6 +30,8 @@ function PlayerEntity()
 		target.draw()
 	end
 
+	self.skillComponent = skillComponent
+
 	self.performSkill = skillComponent.peformSkill
 	self.getPosition = collider.getPositionVector
 	self.update = update

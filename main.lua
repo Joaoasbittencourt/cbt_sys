@@ -5,6 +5,9 @@ wf = require("libs/windfield")
 -- Modules
 camera = require("src/utils/Camera")
 
+-- Utils
+require("src.utils.Timer")
+
 -- Assets
 require("assets/tiles/tile_map")
 

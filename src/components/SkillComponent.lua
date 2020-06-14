@@ -6,8 +6,8 @@ function SkillComponent(caster)
 	}
 
 	local selectedSkillId = 0
-	local maxGlobalCooldown = 2000
-	local globalCooldown = 0
+
+	local globalCooldown = Timer(1000)
 
 	local getSelectedSkill = function()
 		return skills[selectedSkillId]
@@ -15,8 +15,8 @@ function SkillComponent(caster)
 
 	local resolveSkill = function()
 
-		if globalCooldown > 0 then
-			-- skill still on cooldown, show a dialog
+		-- Still on global cooldown
+		if globalCooldown.isRunning() then
 			selectedSkillId = 0
 			return
 		end
@@ -36,7 +36,7 @@ function SkillComponent(caster)
 		end
 
 		selectedSkillId = 0
-		globalCooldown = maxGlobalCooldown
+		globalCooldown.start()
 
 	end
 
@@ -46,12 +46,7 @@ function SkillComponent(caster)
 
 	self.update = function(dt)
 
-		if globalCooldown > 0 then
-			globalCooldown = globalCooldown - dt * 1000
-		end
-		if globalCooldown < 0 then
-			globalCooldown = 0
-		end
+		globalCooldown.update(dt)
 
 		if selectedSkillId > 0 and Controller.isLeftClicking() then
 			resolveSkill()
@@ -72,10 +67,6 @@ function SkillComponent(caster)
 
 	self.getGlobalCooldown = function()
 		return globalCooldown
-	end
-
-	self.getMaxGlobalCooldown = function ()
-		return maxGlobalCooldown
 	end
 
 	return self

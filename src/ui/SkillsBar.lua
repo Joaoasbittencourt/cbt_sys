@@ -18,7 +18,7 @@ function SkillsBar()
 			"fill",
 			baseX,
 			baseY - padding - cooldownBarHeight,
-			skillSquareSize * skillComponent.getGlobalCooldown() / skillComponent.getMaxGlobalCooldown(),
+			skillSquareSize * skillComponent.getGlobalCooldown().getCompletionPercentage(),
 			cooldownBarHeight
 		)
 	end

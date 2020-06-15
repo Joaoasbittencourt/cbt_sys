@@ -13,6 +13,9 @@ function Heal()
 	end
 
 	self.cast = function(caster, afterCast)
+		if cooldown.isRunning() then
+			return
+		end
 		caster.health.heal(baseHeal + math.floor(varHeal * math.random()))
 		cooldown.start()
 		afterCast()

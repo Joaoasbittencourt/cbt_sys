@@ -38,7 +38,11 @@ function SkillComponent(caster)
 			skill.update(dt)
 		end
 
-		if selectedSkillId > 0 and Controller.isLeftClicking() then
+		if selectedSkillId > 0 and not getSelectedSkill().aim then
+			resolveSkill()
+		end
+
+		if selectedSkillId > 0 and getSelectedSkill().aim and Controller.isLeftClicking() then
 			resolveSkill()
 		end
 	end
@@ -47,7 +51,7 @@ function SkillComponent(caster)
 		local casterPosition = caster.getPosition()
 		local selectedSkill = getSelectedSkill()
 
-		if selectedSkillId > 0 then
+		if selectedSkillId > 0 and selectedSkill.aim then
 			local mousePos = Controller.getGlobalMousePosition()
 			love.graphics.setColor(0.25, 0.70, 255)
 			love.graphics.circle("line", casterPosition.getX(), casterPosition.getY(), selectedSkill.getRange())

@@ -17,6 +17,10 @@ function FireBomb()
 		cooldown.update(dt)
 	end
 
+	self.aim = function ()
+		
+	end
+
 	self.cast = function(caster, afterCast)
 
 		if cooldown.isRunning() then

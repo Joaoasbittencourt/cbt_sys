@@ -5,7 +5,7 @@ function FireBomb()
 	local baseDamage = 40
 	local range = 300
 	local areaOfEffectRadius = 50
-	local cooldown = Timer(1000)
+	local cooldown = Timer(5000)
 
 	self.name = "Fire Bomb"
 
@@ -23,14 +23,17 @@ function FireBomb()
 			return
 		end
 
-		local damage = baseDamage + math.floor(varDamage * math.random())
 		local position = Controller.getGlobalMousePosition()
-		damageAreaSystem.push(
-			CircularDamageAreaEntity(position, areaOfEffectRadius, damage, 400)
-		)
+		local damage = baseDamage + math.floor(varDamage * math.random())
+		local damageArea = CircularDamageAreaEntity(position, areaOfEffectRadius, damage, 400)
+		damageAreaSystem.push(damageArea)
 
 		cooldown.start()
 		afterCast()
+	end
+
+	self.getCooldown = function()
+		return cooldown
 	end
 
 	return self

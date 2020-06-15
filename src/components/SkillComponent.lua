@@ -5,7 +5,8 @@ function SkillComponent(caster)
 	local globalCooldown = Timer(1000)
 
 	local skills = {
-		[1] = FireBomb()
+		[1] = FireBomb(),
+		[2] = Heal()
 	}
 
 	local getSelectedSkill = function()
@@ -56,6 +57,10 @@ function SkillComponent(caster)
 
 	self.getGlobalCooldown = function()
 		return globalCooldown
+	end
+
+	self.getSkills = function()
+		return skills
 	end
 
 	return self

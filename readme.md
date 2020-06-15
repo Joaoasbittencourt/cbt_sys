@@ -43,6 +43,8 @@
 
 ## Now on
 
-- Add Skills as a parameter and pass the player and the targets to calculate effect, or deploy a damage area or a bullet
-- Move resolve skill logic to the skill, create another skill, make the cast work for both of the skills, make them have separated cooldowns, make it be visible on the skills hud, show error dialogs when the skills are still on cooldown
-- Make Skill damage area have a independent life cycle (deploy a damage area)
+-- (if it doesent have aim, just cast it)
+-- mana
+-- loot
+-- exp
+-- level, stats

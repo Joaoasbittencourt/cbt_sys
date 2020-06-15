@@ -7,7 +7,7 @@ function CircularDamageAreaEntity(position, radius, damage, delay)
 	damageDelayTimer.start()
 
 	self.draw =  function()
-		love.graphics.setColor(1, 0, 0);
+		love.graphics.setColor(1, 0, 0, 0.4);
 		love.graphics.circle("line", position.getX(), position.getY(), radius)
 	end
 

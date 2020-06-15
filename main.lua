@@ -6,6 +6,7 @@ require("assets/tiles/tile_map")
 require("src.ui.SkillsBar")
 require("src/animations/FireBombAnimation")
 require("src.skills.FireBomb")
+require("src.skills.Heal")
 require("src/utils/HealthBar")
 require("src/utils/Controller")
 require("src/utils/Loader")
@@ -68,7 +69,7 @@ function love.keypressed(key, scancode, isrepeat)
 	end
 
 	if key == 'e' then
-		player.health.heal(2 +  math.floor(math.random() * 9))
+		player.performSkill(2)
 	end
 
 	if key == 'h' then

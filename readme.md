@@ -24,7 +24,7 @@
 - [x] HealthManagerComponent
 - [x] Add Camera
 - [X] Add Skills
-- [ ] Hud with Skills and cooldowns
+- [x] Hud with Skills and cooldowns
 - [ ] Animated Sprites to player
 - [ ] Add map with collidable tiles
 - [ ] Add Attack Animation
@@ -38,11 +38,11 @@
 
 - Refactor MapLoader (store map colliders)
 - Add more skills
-
+- Add a distance limiter to the skillComponent
 - hitsplashes and renderHealthBar to be animations?
 
 ## Now on
 
-- Add the hud the hud and show skills and cooldowns...
-- Also, setup global cooldowns
 - Add Skills as a parameter and pass the player and the targets to calculate effect, or deploy a damage area or a bullet
+- Move resolve skill logic to the skill, create another skill, make the cast work for both of the skills, make them have separated cooldowns, make it be visible on the skills hud, show error dialogs when the skills are still on cooldown
+- Make Skill damage area have a independent life cycle (deploy a damage area)

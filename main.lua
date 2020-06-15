@@ -1,49 +1,28 @@
-
--- Libraries
 wf = require("libs/windfield")
-
--- Modules
 camera = require("src/utils/Camera")
 
--- Utils
 require("src.utils.Timer")
-
--- Assets
 require("assets/tiles/tile_map")
-
--- UI
 require("src.ui.SkillsBar")
-
--- Animations
 require("src/animations/FireBombAnimation")
-
--- Skills
 require("src.skills.FireBomb")
-
--- Utils
 require("src/utils/HealthBar")
 require("src/utils/Controller")
 require("src/utils/Loader")
 require("src/utils/Vector")
 require("src/utils/Fonts")
-
--- Components
 require("src/components/HealthComponent")
 require("src/components/WeaponComponent")
 require("src/components/ColliderComponent")
 require("src/components/SkillComponent")
-
--- Entities
 require("src/entities/HitSplashEntity")
-require("src/entities/DamageAreaEntity")
+require("src/entities/CircularDamageAreaEntity")
 require("src/entities/EnemyEntity")
 require("src/entities/PlayerEntity")
-
--- Systems
 require("src/systems/AnimationSystem")
 require("src/systems/UISystem")
 require("src/systems/EnemySystem")
-
+require("src/systems/DamageAreaSystem")
 
 
 function love.load()
@@ -54,6 +33,7 @@ function love.load()
 	enemySystem = EnemySystem()
 	animationSystem = AnimationSystem()
 	uiSystem = UISystem()
+	damageAreaSystem = DamageAreaSystem()
 end
 
 function love.update(dt)
@@ -61,16 +41,20 @@ function love.update(dt)
 	player.update(dt)
 	camera.lookAt(player.getPosition())
 	enemySystem.update(dt)
+	damageAreaSystem.update(dt)
 	animationSystem.update(dt)
 end
 
 function love.draw()
-	camera.draw(function()
-		map:draw()
-		player.draw()
-		enemySystem.draw()
-		animationSystem.draw()
-	end)
+	camera.draw(
+		function()
+			map:draw()
+			player.draw()
+			enemySystem.draw()
+			animationSystem.draw()
+			damageAreaSystem.draw()
+		end
+	)
 	uiSystem.draw(player.skillComponent)
 end
 
@@ -89,9 +73,5 @@ function love.keypressed(key, scancode, isrepeat)
 
 	if key == 'h' then
 		enemySystem.push(EnemyEntity())
-	end
-
-	if key == "c" then
-		showCollidables = not showCollidables
 	end
 end

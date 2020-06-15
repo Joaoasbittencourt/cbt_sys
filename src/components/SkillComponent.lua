@@ -1,13 +1,12 @@
 function SkillComponent(caster)
+
 	local self = {}
+	local selectedSkillId = 0
+	local globalCooldown = Timer(1000)
 
 	local skills = {
 		[1] = FireBomb()
 	}
-
-	local selectedSkillId = 0
-
-	local globalCooldown = Timer(1000)
 
 	local getSelectedSkill = function()
 		return skills[selectedSkillId]
@@ -21,23 +20,9 @@ function SkillComponent(caster)
 			return
 		end
 
-		local skill = getSelectedSkill()
-		local skillRadius = skill.getAreaOfEffectRadius()
-		local position = Controller.getGlobalMousePosition()
-		local colliders = world:queryCircleArea(position.getX(), position.getY(), skillRadius)
-		local damage = skill.getDamage()
-		animationSystem.push(FireBombAnimation(position, skillRadius))
-
-		for _, collider in pairs(colliders) do
-			if collider.getParent ~= nil then
-				local entity = collider:getParent()
-				entity.health.insertDamage(damage)
-			end
-		end
+		getSelectedSkill().cast(caster, globalCooldown.start)
 
 		selectedSkillId = 0
-		globalCooldown.start()
-
 	end
 
 	self.peformSkill = function(skillId)
@@ -47,6 +32,10 @@ function SkillComponent(caster)
 	self.update = function(dt)
 
 		globalCooldown.update(dt)
+
+		for key, skill in pairs(skills) do
+			skill.update(dt)
+		end
 
 		if selectedSkillId > 0 and Controller.isLeftClicking() then
 			resolveSkill()
